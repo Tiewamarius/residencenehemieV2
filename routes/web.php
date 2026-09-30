@@ -1,0 +1,18 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
+
+Route::get('/', fn() => Inertia::render('Home'));
+
+Route::get('/a-propos', fn() => Inertia::render('About'));
+
+Route::get('/hebergement', fn() => Inertia::render('Rooms'));
+
+Route::get('/services', fn() => Inertia::render('Services'));
+
+Route::get('/galerie', fn() => Inertia::render('Gallery'));
+
+Route::get('/contact', fn() => Inertia::render('Contact'));
+
+Route::get('/reservation', fn() => Inertia::render('Reservation'));

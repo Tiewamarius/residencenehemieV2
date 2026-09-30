@@ -1,0 +1,398 @@
+/* =========================================================
+   HEADER
+========================================================= */
+
+.site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+
+    z-index: 9999;
+
+    background: transparent;
+
+    transition:
+        background-color 0.35s ease,
+        box-shadow 0.35s ease,
+        backdrop-filter 0.35s ease;
+}
+
+
+/* =========================================================
+   HEADER APRÈS SCROLL
+========================================================= */
+
+.site-header.scrolled {
+    background: #ffffff;
+
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+
+/* =========================================================
+   CONTAINER
+========================================================= */
+
+.site-header .header-container {
+    width: 100%;
+    max-width: 1320px;
+
+    min-height: 100px;
+
+    margin: 0 auto;
+
+    padding: 0 30px;
+
+    display: flex;
+    align-items: center;
+}
+
+
+/* =========================================================
+   COLONNES
+========================================================= */
+
+.site-header .header-logo-column {
+    width: 25%;
+}
+
+.site-header .header-menu-column {
+    width: 50%;
+}
+
+.site-header .header-action-column {
+    width: 25%;
+}
+
+
+/* =========================================================
+   LOGO
+========================================================= */
+
+.site-header .knsl-logo-frame {
+    display: flex;
+    align-items: center;
+}
+
+.site-header .knsl-logo-frame img {
+    display: block;
+
+    width: auto;
+
+    max-width: 180px;
+    max-height: 70px;
+}
+
+
+/* =========================================================
+   MENU
+========================================================= */
+
+.site-header .knsl-menu {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+}
+
+.site-header .top-menu-nav {
+    width: 100%;
+}
+
+.site-header .top-menu-nav-inner {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 38px;
+
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+}
+
+.site-header .top-menu-nav-inner .menu-item {
+    margin: 0;
+    padding: 0;
+}
+
+.site-header .top-menu-nav-inner .menu-item a {
+    position: relative;
+
+    display: inline-block;
+
+    padding: 10px 0;
+
+    color: #ffffff;
+
+    font-size: 15px;
+    font-weight: 500;
+
+    text-decoration: none;
+
+    transition:
+        color 0.3s ease;
+}
+
+
+/* Ligne sous le lien */
+
+.site-header .top-menu-nav-inner .menu-item a::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    bottom: 3px;
+
+    width: 0;
+    height: 4px;
+
+    background: currentColor;
+
+    transition: width 0.3s ease;
+}
+
+
+/* Hover */
+
+.site-header .top-menu-nav-inner .menu-item a:hover {
+    color: #f3456b;
+}
+
+.site-header .top-menu-nav-inner .menu-item a:hover::after {
+    width: 100%;
+}
+
+
+/* =========================================================
+   MENU APRÈS SCROLL
+========================================================= */
+
+.site-header.scrolled .top-menu-nav-inner .menu-item a {
+    color: #222222;
+}
+
+.site-header.scrolled .top-menu-nav-inner .menu-item a:hover {
+    color: #f3456b;
+}
+
+
+/* =========================================================
+   RÉSERVATION
+========================================================= */
+
+.site-header .header-right {
+    width: 100%;
+
+    display: flex;
+
+    justify-content: flex-end;
+    align-items: center;
+
+    gap: 20px;
+}
+
+
+/* Bouton */
+
+.site-header .knsl-btn {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+
+    min-height: 48px;
+
+    padding: 0 24px;
+
+    background: #f3456b;
+
+    color: #ffffff;
+
+    text-decoration: none;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    border-radius: 10px;
+
+    transition:
+        background-color 0.3s ease,
+        transform 0.3s ease;
+}
+
+.site-header .knsl-btn:hover {
+    background: #f3456b;
+
+    transform: translateY(-2px);
+}
+
+
+/* Icône */
+
+.site-header .knsl-btn svg {
+    width: 15px;
+    height: 20px;
+
+    fill: currentColor;
+}
+
+
+/* =========================================================
+   MENU MOBILE
+========================================================= */
+
+.site-header .knsl-menu-btn {
+    display: none;
+
+    width: 44px;
+    height: 44px;
+
+    padding: 0;
+
+    border: 0;
+
+    background: transparent;
+
+    cursor: pointer;
+}
+
+.site-header .knsl-menu-btn span,
+.site-header .knsl-menu-btn::before,
+.site-header .knsl-menu-btn::after {
+    content: "";
+
+    display: block;
+
+    width: 25px;
+    height: 2px;
+
+    margin: 5px auto;
+
+    background: #ffffff;
+
+    transition: background-color 0.3s ease;
+}
+
+
+/* Hamburger après scroll */
+
+.site-header.scrolled .knsl-menu-btn span,
+.site-header.scrolled .knsl-menu-btn::before,
+.site-header.scrolled .knsl-menu-btn::after {
+    background: #222222;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 991px) {
+
+    .site-header .header-container {
+        min-height: 85px;
+
+        padding: 0 20px;
+    }
+
+    .site-header .knsl-logo-frame img {
+        max-width: 155px;
+    }
+
+    .site-header .top-menu-nav-inner {
+        gap: 22px;
+    }
+
+    .site-header .top-menu-nav-inner .menu-item a {
+        font-size: 18px;
+    }
+
+    .site-header .knsl-btn {
+        padding: 0 18px;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 767px) {
+
+    .site-header .header-container {
+        min-height: 75px;
+
+        padding: 0 18px;
+    }
+
+
+    /* Logo */
+
+    .site-header .header-logo-column {
+        width: auto;
+
+        flex: 1;
+    }
+
+    .site-header .knsl-logo-frame img {
+        max-width: 135px;
+        max-height: 55px;
+    }
+
+
+    /* Menu desktop caché */
+
+    .site-header .header-menu-column {
+        display: none;
+    }
+
+
+    /* Partie droite */
+
+    .site-header .header-action-column {
+        width: auto;
+
+        flex: 0 0 auto;
+    }
+
+    .site-header .header-right {
+        width: auto;
+
+        justify-content: flex-end;
+
+        gap: 10px;
+    }
+
+
+    /* Bouton réservation */
+
+    .site-header .knsl-btn {
+        min-height: 42px;
+
+        padding: 0 14px;
+
+        font-size: 13px;
+    }
+
+    .site-header .knsl-btn svg {
+        width: 13px;
+        height: 17px;
+    }
+
+
+    /* Hamburger */
+
+    .site-header .knsl-menu-btn {
+        display: block;
+    }
+}
