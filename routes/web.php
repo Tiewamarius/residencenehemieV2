@@ -11,7 +11,7 @@ Route::get('/hebergement', fn() => Inertia::render('Rooms'));
 
 Route::get('/services', fn() => Inertia::render('Services'));
 
-Route::get('/galerie', fn() => Inertia::render('Gallery'));
+Route::get('/rooms', fn() => Inertia::render('Rooms'));
 
 Route::get('/contact', fn() => Inertia::render('Contact'));
 

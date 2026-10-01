@@ -1,23 +1,31 @@
+
 import { useEffect, useState } from 'react';
+import './css/Hero.css';
+// import HotelLinkWidget from '../Components/HotelLinkWidget';
 import { Link } from '@inertiajs/react';
 
 const slides = [
     {
-        image: '/img/RN8_Salon.jpg',
-        alt: 'Bienvenue à la Residence Nehemie ,Un Havre de paix pour le confort.',
+        image: '/img/Hero-Gallery/RN8_Salon.jpg',
+        alt: 'Bienvenue à la Résidence Néhémie',
     },
     {
-        image: '/img/ESPACE COMMUN 2.jpg',
-        alt: 'Douglas Luxury Apartments',
+        image: '/img/Hero-Gallery/ESPACE COMMUN 2.jpg',
+        alt: 'Espace commun de la résidence',
     },
     {
-        image: '/img/ESPACE COMMUN 2.jpg',
-        alt: 'Luxury apartment',
+        image: '/img/Hero-Gallery/RN8_Salon.jpg',
+        alt: 'Salon de la résidence',
     },
 ];
 
 export default function Hero() {
     const [currentSlide, setCurrentSlide] = useState(0);
+
+    const [arrival, setArrival] = useState('');
+    const [departure, setDeparture] = useState('');
+    const [adults, setAdults] = useState('1');
+    const [children, setChildren] = useState('0');
 
     const nextSlide = () => {
         setCurrentSlide((current) => (current + 1) % slides.length);
@@ -31,11 +39,24 @@ export default function Hero() {
 
     useEffect(() => {
         const interval = setInterval(() => {
-            nextSlide();
+            setCurrentSlide((current) => (current + 1) % slides.length);
         }, 7000);
 
         return () => clearInterval(interval);
     }, []);
+
+    const handleSearch = (event) => {
+        event.preventDefault();
+
+        const params = new URLSearchParams({
+            arrival,
+            departure,
+            adults,
+            children,
+        });
+
+        window.location.href = `/reservation?${params.toString()}`;
+    };
 
     return (
         <section className="hero">
@@ -44,49 +65,167 @@ export default function Hero() {
             <div className="hero__background">
                 {slides.map((slide, index) => (
                     <div
-                        key={slide.image}
-                        className={`hero__slide ${index === currentSlide ? 'hero__slide--active' : ''
-                            }`}
+                        key={`${slide.image}-${index}`}
+                        className={`hero__slide ${
+                            index === currentSlide
+                                ? 'hero__slide--active'
+                                : ''
+                        }`}
                         style={{
                             backgroundImage: `url("${slide.image}")`,
                         }}
+                        role="img"
                         aria-label={slide.alt}
                     />
                 ))}
             </div>
 
-            {/* Dark overlay */}
+            {/* Overlay */}
             <div className="hero__overlay" />
-
 
             {/* Hero content */}
             <div className="hero__content">
 
+                {/* Rating */}
+                {/* <div className="hero__rating" aria-label="5 étoiles">
+                    {[1, 2, 3, 4, 5].map((star) => (
+                        <span key={star}>★</span>
+                    ))}
+                </div> */}
+
+                {/* Title */}
                 <div className="hero__title">
-                    <span className="hero__title-main">
-                        Bienvenue à la Résidence Néhémie
-                    </span>
+                    <h1 className="hero__title-main">
+                        Bienvenue à la Residence Néhemie
+                    </h1>
 
-
-                    <span className="hero__title-subtitle">
+                    <p className="hero__title-subtitle">
                         Un Havre de paix pour le confort.
-                    </span>
+                    </p>
                 </div>
 
-                <div className="hero__search">
-                    <input
-                        type="text"
-                        className="hero__search-input"
-                        placeholder="Rechercher un appartement..."
-                    />
+                {/* Reservation search */}
+                <form
+                    className="hero__booking"
+                    onSubmit={handleSearch}
+                >
 
+                    {/* Arrival */}
+                    <div className="hero__booking-field">
+                        <label htmlFor="hero-arrival">
+                            Arrivée
+                        </label>
+
+                        <div className="hero__booking-input">
+                            <input
+                                id="hero-arrival"
+                                type="date"
+                                value={arrival}
+                                onChange={(event) =>
+                                    setArrival(event.target.value)
+                                }
+                                required
+                                aria-label="Date d'arrivée"
+                            />
+                        </div>
+                    </div>
+
+                    {/* Departure */}
+                    <div className="hero__booking-field">
+                        <label htmlFor="hero-departure">
+                            Départ
+                        </label>
+
+                        <div className="hero__booking-input">
+                            <input
+                                id="hero-departure"
+                                type="date"
+                                value={departure}
+                                min={arrival || undefined}
+                                onChange={(event) =>
+                                    setDeparture(event.target.value)
+                                }
+                                required
+                                aria-label="Date de départ"
+                            />
+                        </div>
+                    </div>
+
+                    {/* Adults */}
+                    <div className="hero__booking-field">
+                        <label htmlFor="hero-adults">
+                            Adultes
+                        </label>
+
+                        <div className="hero__booking-input">
+                            <select
+                                id="hero-adults"
+                                value={adults}
+                                onChange={(event) =>
+                                    setAdults(event.target.value)
+                                }
+                            >
+                                {[1, 2, 3, 4, 5, 6, 7, 8].map((number) => (
+                                    <option key={number} value={number}>
+                                        {number}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
+                    </div>
+
+                    {/* Children */}
+                    <div className="hero__booking-field">
+                        <label htmlFor="hero-children">
+                            Enfants
+                        </label>
+
+                        <div className="hero__booking-input">
+                            <select
+                                id="hero-children"
+                                value={children}
+                                onChange={(event) =>
+                                    setChildren(event.target.value)
+                                }
+                            >
+                                {[0, 1, 2, 3, 4, 5, 6].map((number) => (
+                                    <option key={number} value={number}>
+                                        {number}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
+                    </div>
+
+                    {/* Search button */}
                     <button
-                        type="button"
-                        className="hero__search-button"
+                        type="submit"
+                        className="hero__booking-submit"
+                        aria-label="Rechercher une disponibilité"
                     >
-                        Rechercher
+                        <svg
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <circle
+                                cx="10.8"
+                                cy="10.8"
+                                r="6.8"
+                                stroke="currentColor"
+                                strokeWidth="2"
+                            />
+
+                            <path
+                                d="M16 16L21 21"
+                                stroke="currentColor"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                            />
+                        </svg>
                     </button>
-                </div>
+
+                </form>
 
             </div>
 
@@ -95,13 +234,9 @@ export default function Hero() {
                 type="button"
                 className="hero__slider-button hero__slider-button--prev"
                 onClick={previousSlide}
-                aria-label="Previous slide"
+                aria-label="Image précédente"
             >
-                <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                >
+                <svg viewBox="0 0 24 24" fill="none">
                     <path
                         d="M15 18L9 12L15 6"
                         stroke="currentColor"
@@ -117,13 +252,9 @@ export default function Hero() {
                 type="button"
                 className="hero__slider-button hero__slider-button--next"
                 onClick={nextSlide}
-                aria-label="Next slide"
+                aria-label="Image suivante"
             >
-                <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                >
+                <svg viewBox="0 0 24 24" fill="none">
                     <path
                         d="M9 18L15 12L9 6"
                         stroke="currentColor"
@@ -138,7 +269,7 @@ export default function Hero() {
             <a
                 href="#content"
                 className="hero__scroll"
-                aria-label="Scroll down"
+                aria-label="Défiler vers le contenu"
             >
                 <span className="hero__mouse">
                     <span className="hero__mouse-wheel" />
@@ -155,13 +286,9 @@ export default function Hero() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hero__whatsapp"
-                aria-label="Contact us on WhatsApp"
+                aria-label="Contacter sur WhatsApp"
             >
-                <svg
-                    viewBox="0 0 32 32"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                >
+                <svg viewBox="0 0 32 32" fill="none">
                     <path
                         d="M16 3.5C9.096 3.5 3.5 9.096 3.5 16C3.5 18.206 4.074 20.278 5.078 22.064L3.5 28.5L10.09 26.96C11.836 27.936 13.842 28.5 16 28.5C22.904 28.5 28.5 22.904 28.5 16C28.5 9.096 22.904 3.5 16 3.5Z"
                         stroke="currentColor"
@@ -181,12 +308,13 @@ export default function Hero() {
                     <button
                         key={index}
                         type="button"
-                        className={`hero__indicator ${index === currentSlide
+                        className={`hero__indicator ${
+                            index === currentSlide
                                 ? 'hero__indicator--active'
                                 : ''
-                            }`}
+                        }`}
                         onClick={() => setCurrentSlide(index)}
-                        aria-label={`Go to slide ${index + 1}`}
+                        aria-label={`Afficher l'image ${index + 1}`}
                     />
                 ))}
             </div>

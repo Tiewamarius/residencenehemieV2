@@ -9,11 +9,7 @@
     <!-- Style hotelLink -->
     <link rel="stylesheet" href="https://book.securebookings.net/css/app-v2.css" />
 
-
-    <link rel="stylesheet" href="/css/Hero.css">
-    <link rel="stylesheet" href="/css/Header.css">
-    <link rel="stylesheet" href="/css/Gallery.css">
-
+ 
 
     @viteReactRefresh
     @vite(['resources/js/app.jsx'])

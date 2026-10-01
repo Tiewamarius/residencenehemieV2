@@ -1,6 +1,6 @@
 import { Link } from '@inertiajs/react';
 import { useEffect, useState } from 'react';
-
+import './css/Header.css';
 export default function Header() {
     const [scrolled, setScrolled] = useState(false);
 
@@ -58,8 +58,8 @@ export default function Header() {
                                         </li>
 
                                         <li className="menu-item">
-                                            <Link href="/galerie">
-                                                Galeries
+                                            <Link href="/rooms">
+                                                Appartements
                                             </Link>
                                         </li>
 

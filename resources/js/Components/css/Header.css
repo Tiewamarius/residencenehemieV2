@@ -13,10 +13,16 @@
 
     background: transparent;
 
-    transition:
-        background-color 0.35s ease,
-        box-shadow 0.35s ease,
-        backdrop-filter 0.35s ease;
+        background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    backdrop-filter: blur(5px);
+    transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+ 
+
 }
 
 
@@ -39,11 +45,11 @@
     width: 100%;
     max-width: 1320px;
 
-    min-height: 100px;
+    min-height: 80px;
 
     margin: 0 auto;
 
-    padding: 0 30px;
+    /* padding: 0 30px; */
 
     display: flex;
     align-items: center;

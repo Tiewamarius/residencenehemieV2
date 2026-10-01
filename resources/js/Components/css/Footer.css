@@ -1,0 +1,66 @@
+.knsl-footer {
+    --f-bg: #0f0f0f;
+    --f-text: #a3a3a3;
+    --f-muted: #6b6b6b;
+    --f-line: #242424;
+    --f-gold: #f3456b;
+    background: var(--f-bg);
+    color: var(--f-text);
+    font-family: 'Barlow', system-ui, sans-serif;
+    font-size: 14px;
+    line-height: 1.7;
+    padding: 60px clamp(20px, 7vw, 100px) 0;
+}
+
+.knsl-footer__inner { max-width: 1152px; margin: 0 auto; }
+
+.knsl-footer__top {
+    display: flex;
+    justify-content: space-between;
+    gap: 48px;
+    padding-bottom: 48px;
+}
+
+/* Marque */
+.knsl-footer__brand { max-width: 260px; }
+.knsl-footer__brand img { display: block; height: 80px; width: auto; margin-bottom: 14px; }
+.knsl-footer__brand p { margin: 0 0 26px; }
+
+.knsl-footer__socials { display: flex; flex-wrap: wrap; gap: 10px; margin: 0; padding: 0; list-style: none; }
+.knsl-footer__socials a {
+    display: grid; place-items: center;
+    width: 35px; height: 35px;
+    border: 1px solid var(--f-line); border-radius: 50%;
+    color: var(--f-muted); font-size: 13px;
+    transition: color 0.2s, border-color 0.2s;
+}
+.knsl-footer__socials a:hover,
+.knsl-footer__socials a:focus-visible { color: var(--f-gold); border-color: var(--f-gold); outline: none; }
+
+/* Colonnes de liens */
+.knsl-footer__cols { display: flex; gap: clamp(32px, 5vw, 48px); }
+.knsl-footer__cols h5 {
+    margin: 0 0 24px;
+    color: var(--f-muted);
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 0.16em; text-transform: uppercase;
+}
+.knsl-footer__cols ul { margin: 0; padding: 0; list-style: none; }
+.knsl-footer__cols li + li { margin-top: 16px; }
+.knsl-footer__cols a { color: var(--f-text); text-decoration: none; transition: color 0.2s; }
+.knsl-footer__cols a:hover,
+.knsl-footer__cols a:focus-visible { color: #fff; outline: none; }
+.knsl-footer__wa { display: inline-flex; align-items: center; gap: 7px; }
+.knsl-footer__wa svg { color: var(--f-gold); font-size: 12px; }
+
+/* Bas de page */
+.knsl-footer__bottom {
+    border-top: 1px solid var(--f-line);
+    padding: 22px 0 26px;
+}
+.knsl-footer__bottom p { margin: 0; font-size: 13px; }
+
+@media (max-width: 820px) {
+    .knsl-footer__top { flex-direction: column; }
+    .knsl-footer__cols { flex-wrap: wrap; }
+}
