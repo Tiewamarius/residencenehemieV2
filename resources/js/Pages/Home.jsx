@@ -3,6 +3,8 @@ import Header from '../Components/Header';
 import Hero from '../Components/Hero';
 import Amenities from '../Components/Amenities';
 import AboutResidence from '../Components/AboutResidence';
+
+import AppartSection from '../Components/AppartSection';
 import Footer from '../Components/Footer';
 
 
@@ -16,8 +18,8 @@ export default function Home() {
 
                 <div id="content">
                     <Amenities />
-
                     <AboutResidence />
+                    <AppartSection />
                 </div>
 
                 {/* Les prochaines sections viendront ici */}
