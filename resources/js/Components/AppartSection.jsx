@@ -1,4 +1,4 @@
-
+import { Link } from '@inertiajs/react';
 import './css/AppartSection.css';
 
 const residences = [
@@ -6,7 +6,7 @@ const residences = [
         id: 1,
         name: 'Appartement Signature',
         category: 'Appartement 2 pièces',
-        location: 'Bingerville',
+        //  // location: 'Bingerville',
         address: 'Rue Lambert Feh-Kesse, Bingerville',
         price: 35000,
         image: '/img/Hero-Gallery/RN8_Salon.jpg',
@@ -24,7 +24,7 @@ const residences = [
         id: 2,
         name: 'Résidence Élégance',
         category: 'Appartement 3 pièces',
-        location: 'Bingerville',
+         // location: 'Bingerville',
         address: 'Résidence Néhémie, Bingerville',
         price: 45000,
         image: '/img/Hero-Gallery/RN8_Salon.jpg',
@@ -42,7 +42,7 @@ const residences = [
         id: 3,
         name: 'Résidence Prestige',
         category: 'Appartement 3 pièces',
-        location: 'Bingerville',
+         // location: 'Bingerville',
         address: 'Rue Lambert Feh-Kesse, Bingerville',
         price: 55000,
         image: '/img/Hero-Gallery/RN8_Salon.jpg',
@@ -57,6 +57,44 @@ const residences = [
         details: '/residences/3',
     },
 ];
+
+/* Icônes SVG : les symboles ⌖ et ✓ s'affichent mal sur certains téléphones */
+
+const PinIcon = () => (
+    <svg
+        className="appart-pin"
+        viewBox="0 0 24 24"
+        fill="none"
+        aria-hidden="true"
+    >
+        <path
+            d="M12 21S19 14.5 19 9.5A7 7 0 1 0 5 9.5C5 14.5 12 21 12 21Z"
+            stroke="currentColor"
+            strokeWidth="1.7"
+        />
+        <circle
+            cx="12"
+            cy="9.5"
+            r="2.3"
+            stroke="currentColor"
+            strokeWidth="1.7"
+        />
+    </svg>
+);
+
+const CheckIcon = () => (
+    <span className="appart-check" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none">
+            <path
+                d="M5 12.5L10 17.5L19 7"
+                stroke="currentColor"
+                strokeWidth="3"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+            />
+        </svg>
+    </span>
+);
 
 export default function AppartSection() {
     return (
@@ -77,14 +115,14 @@ export default function AppartSection() {
                         <br />
                         <span>Une expérience d'exception.</span>
                     </h2>
-
+{/* 
                     <p className="appart-lead">
                         Découvrez les appartements meublés de la Résidence
                         Néhémie, conçus pour allier confort, élégance et
                         tranquillité. Que ce soit pour une nuit ou un
                         séjour prolongé, profitez d'un cadre où vous
                         vous sentirez véritablement chez vous.
-                    </p>
+                    </p> */}
 
                 </div>
 
@@ -97,25 +135,22 @@ export default function AppartSection() {
                         <article
                             className="appart-card"
                             key={residence.id}
-                            style={{
-                                '--card-index': index,
-                            }}
+                            style={{ '--card-index': index }}
                         >
 
-                            {/* Image de fond */}
+                            {/* Image de fond + voile */}
 
                             <div
                                 className="appart-card-bg"
                                 style={{
                                     backgroundImage: `url("${residence.image}")`,
                                 }}
+                                aria-hidden="true"
                             />
 
-                            {/* Voile photographique */}
+                            <div className="appart-card-overlay" aria-hidden="true" />
 
-                            <div className="appart-card-overlay" />
-
-                            {/* Informations supérieures */}
+                            {/* Quartier + prix */}
 
                             <div className="appart-card-top">
 
@@ -125,11 +160,12 @@ export default function AppartSection() {
 
                                 <div className="appart-price">
 
-                                    <span>À partir de</span>
+                                    <span className="appart-price-from">
+                                        {/* À partir de */}
+                                    </span>
 
                                     <strong>
-                                        {residence.price.toLocaleString('fr-FR')}
-                                        {' '}FCFA
+                                        {`${residence.price.toLocaleString('fr-FR')}\u00A0FCFA`}
                                     </strong>
 
                                     <small>/ nuit</small>
@@ -153,67 +189,53 @@ export default function AppartSection() {
                                     </h3>
 
                                     <p className="appart-address">
-
-                                        <span className="appart-pin">
-                                            ⌖
-                                        </span>
-
-                                        {residence.address}
-
+                                        <PinIcon />
+                                        <span>{residence.address}</span>
                                     </p>
 
                                 </div>
 
-                                {/* Informations complémentaires */}
+                                {/* Détails : au survol sur desktop, toujours visibles ailleurs */}
 
                                 <div className="appart-hover-content">
 
-                                    <div className="appart-features">
+                                    <div className="appart-hover-inner">
 
-                                        {residence.features.map((feature) => (
+                                        <ul className="appart-features">
+                                            {residence.features.map((feature) => (
+                                                <li
+                                                    className="appart-feature"
+                                                    key={feature}
+                                                >
+                                                    <CheckIcon />
+                                                    <span>{feature}</span>
+                                                </li>
+                                            ))}
+                                        </ul>
 
-                                            <div
-                                                className="appart-feature"
-                                                key={feature}
+                                        <p className="appart-description">
+                                            {residence.description}
+                                        </p>
+
+                                        <div className="appart-actions">
+
+                                            <Link
+                                                href={residence.booking}
+                                                className="appart-btn appart-btn-primary"
                                             >
+                                                Réserver
+                                                <span aria-hidden="true">↗</span>
+                                            </Link>
 
-                                                <span className="appart-check">
-                                                    ✓
-                                                </span>
+                                            <Link
+                                                href={residence.details}
+                                                className="appart-btn appart-btn-ghost"
+                                            >
+                                                Découvrir
+                                                <span aria-hidden="true">→</span>
+                                            </Link>
 
-                                                <span>
-                                                    {feature}
-                                                </span>
-
-                                            </div>
-
-                                        ))}
-
-                                    </div>
-
-                                    <p className="appart-description">
-                                        {residence.description}
-                                    </p>
-
-                                    {/* Actions */}
-
-                                    <div className="appart-actions">
-
-                                        <a
-                                            href={residence.booking}
-                                            className="appart-btn appart-btn-primary"
-                                        >
-                                            Réserver
-                                            <span>↗</span>
-                                        </a>
-
-                                        <a
-                                            href={residence.details}
-                                            className="appart-btn appart-btn-ghost"
-                                        >
-                                            Découvrir
-                                            <span>→</span>
-                                        </a>
+                                        </div>
 
                                     </div>
 
@@ -235,13 +257,13 @@ export default function AppartSection() {
                         Votre confort mérite un cadre exceptionnel.
                     </p>
 
-                    <a
+                    <Link
                         href="/reservation"
                         className="appart-discover-link"
                     >
                         Découvrir nos appartements
-                        <span>→</span>
-                    </a>
+                        <span aria-hidden="true">→</span>
+                    </Link>
 
                 </div>
 

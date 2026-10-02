@@ -13,6 +13,6 @@ Route::get('/services', fn() => Inertia::render('Services'));
 
 Route::get('/rooms', fn() => Inertia::render('Rooms'));
 
-Route::get('/contact', fn() => Inertia::render('Contact'));
+Route::get('/restauration', fn() => Inertia::render('RestaurationPage'));
 
 Route::get('/reservation', fn() => Inertia::render('Reservation'));

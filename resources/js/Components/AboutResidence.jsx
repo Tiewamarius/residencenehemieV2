@@ -1,5 +1,5 @@
-
 import { Link } from '@inertiajs/react';
+import './css/HomeSection.css';
 
 export default function AboutVilla() {
     return (
@@ -11,7 +11,7 @@ export default function AboutVilla() {
                 <div className="about-villa-image">
                     <img
                         src="/img/Hero-Gallery/ESPACE COMMUN 2.jpg"
-                        alt="Découverte de la Residence"
+                        alt="Découverte de la Résidence"
                         loading="lazy"
                     />
                 </div>
@@ -24,12 +24,12 @@ export default function AboutVilla() {
                     </span>
 
                     <h2>
-                        La Residence Néhémie
+                        La Résidence Néhémie
                     </h2>
 
                     <p>
-                        La Residence Néhémie propose un cadre agréable pour
-                        vos séjours en cote d'Ivoire.
+                        La Résidence Néhémie propose un cadre agréable pour
+                        vos séjours en Côte d'Ivoire.
                     </p>
 
                     <p>
@@ -41,7 +41,7 @@ export default function AboutVilla() {
                     <div className="about-villa-details">
 
                         <div className="about-villa-detail">
-                            <span className="about-villa-detail-icon">
+                            <span className="about-villa-detail-icon" aria-hidden="true">
                                 <svg viewBox="0 0 24 24" fill="none">
                                     <path
                                         d="M12 21S19 14.5 19 9.5A7 7 0 1 0 5 9.5C5 14.5 12 21 12 21Z"
@@ -58,11 +58,11 @@ export default function AboutVilla() {
                                 </svg>
                             </span>
 
-                            <span>Abidj, Bingerville-Feh kesse</span>
+                            <span>Abidjan, Bingerville - Féh Kessé</span>
                         </div>
 
                         <div className="about-villa-detail">
-                            <span className="about-villa-detail-icon">
+                            <span className="about-villa-detail-icon" aria-hidden="true">
                                 <svg viewBox="0 0 24 24" fill="none">
                                     <path
                                         d="M3 11L12 4L21 11V20H3V11Z"

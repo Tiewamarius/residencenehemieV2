@@ -1,30 +1,28 @@
 
-import Header from '../Components/Header';
-import Hero from '../Components/Hero';
-import Amenities from '../Components/Amenities';
-import AboutResidence from '../Components/AboutResidence';
+import MainLayout from '../Layouts/MainLayout';
+import Hero from "../Components/Hero";
+import Amenities from "../Components/Amenities";
+import AboutResidence from "../Components/AboutResidence";
 
-import AppartSection from '../Components/AppartSection';
-import Footer from '../Components/Footer';
-
+import AppartSection from "../Components/AppartSection";
+import Footer from "../Components/Footer";
 
 export default function Home() {
     return (
         <>
-            <Header />
+            <MainLayout>
+                <main>
+                    <Hero />
 
-            <main>
-                <Hero />
+                    <div id="content">
+                        <Amenities />
+                        <AboutResidence />
+                        <AppartSection />
+                    </div>
 
-                <div id="content">
-                    <Amenities />
-                    <AboutResidence />
-                    <AppartSection />
-                </div>
-
-                {/* Les prochaines sections viendront ici */}
-            </main>
-            <Footer/>
+                    {/* Les prochaines sections viendront ici */}
+                </main>
+            </MainLayout>
         </>
     );
 }
