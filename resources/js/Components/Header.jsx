@@ -16,10 +16,10 @@ import "./css/Header.css";
 const MOBILE_BREAKPOINT = 991;
 
 const NAV_ITEMS = [
-    { href: "/", label: "ACCUEIL" },
-    { href: "/reservation", label: "RESERVATION" },
-    { href: "/rooms", label: "APPARTEMENTS" },
-    { href: "/restauration", label: "RESTAURATION" },
+    { href: "/", label: "Accueil" },
+    { href: "/reservation", label: "Reservation" },
+    { href: "/rooms", label: "Appartements" },
+    { href: "/restauration", label: "Restauration" },
 ];
 
 const CONTACT_LINKS = [
@@ -35,7 +35,7 @@ const CONTACT_LINKS = [
     { href: "tel:+2250500326868", icon: FaPhone, label: "+225 05 00 32 68 68" },
     { href: "mailto:info@residencenehemie.com", icon: FaEnvelope, label: "Envoyer un e-mail" },
     {
-        href: "https://www.google.com/maps/search/?api=1&query=R%C3%A9sidence+N%C3%A9h%C3%A9mie+Bingerville",
+        href: "https://www.google.com/maps/dir/?api=1&destination=5.389184494589828,-3.9155399255394325",
         icon: FaLocationDot,
         label: "Voir l'Itinéraire",
         external: true,
@@ -151,7 +151,7 @@ export default function Header() {
                                     ))}
                                     <li className="menu-item">
                                         <button type="button" onClick={openContact}>
-                                            CONTACTEZ-NOUS
+                                            Contactez-nous
                                         </button>
                                     </li>
                                 </ul>

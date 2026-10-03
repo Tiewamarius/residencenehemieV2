@@ -78,7 +78,7 @@
 
     color: var(--appart-dark);
     font-family: Georgia, "Times New Roman", serif;
-    font-size: clamp(38px, 5.5vw, 76px);
+    font-size: clamp(35px, 5vw, 16px);
     font-weight: 15x;
     line-height: 1.08;
     letter-spacing: -0.03em;

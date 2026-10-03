@@ -1,4 +1,6 @@
+
 import { Link } from "@inertiajs/react";
+
 import {
     FaFacebookF,
     FaInstagram,
@@ -9,56 +11,50 @@ import {
 
 import "./css/Footer.css";
 
-const COLUMNS = [
+const QUICK_LINKS = [
     {
-        title: "Navigation",
-        links: [
-            { label: "Accueil", href: "/" },
-            { label: "À propos", href: "/a-propos" },
-            { label: "Nos chambres", href: "/hebergement" },
-        ],
+        label: "Réservation",
+        href: "/reservation",
     },
     {
-        title: "Séjour",
-        links: [
-            { label: "Services", href: "/services" },
-            { label: "Contact", href: "/contact" },
-        ],
+        label: "Appartements",
+        href: "/rooms",
+    },
+    {
+        label: "Restauration",
+        href: "/restauration",
+    },
+    {
+        label: "Contactez-nous",
+        href: "/contact",
     },
 ];
 
-// À remplacer par vos vrais liens
 const SOCIALS = [
     {
         label: "WhatsApp",
-        href: "https://wa.me/+2250500326868",
+        href: "https://wa.me/2250500326868",
         Icon: FaWhatsapp,
-        external: true,
     },
     {
         label: "TikTok",
         href: "https://www.tiktok.com/@residencenehemie2",
         Icon: FaTiktok,
-        external: true,
     },
     {
         label: "Instagram",
         href: "https://www.instagram.com/residencenehemie",
         Icon: FaInstagram,
-        external: true,
     },
     {
-        label: "Facebook Messenger",
+        label: "Facebook",
         href: "https://www.facebook.com/share/1BkydohdQK/?mibextid=wwXIfr",
         Icon: FaFacebookF,
-        external: true,
     },
-    // Si vous souhaitez garder YouTube (laissez un lien valide ou '#' en attendant) :
     {
         label: "YouTube",
         href: "#",
         Icon: FaYoutube,
-        external: true,
     },
 ];
 
@@ -66,14 +62,30 @@ export default function Footer() {
     return (
         <footer className="knsl-footer">
             <div className="knsl-footer__inner">
+
+                {/* Partie supérieure */}
+
                 <div className="knsl-footer__top">
+
+                    {/* Identité */}
+
                     <div className="knsl-footer__brand">
-                        <img src="/img/logo.png" alt="Résidence Néhémie" />
+
+                        <Link href="/" aria-label="Accueil Résidence Néhémie">
+                            <img
+                                src="/img/logo.png"
+                                alt="Résidence Néhémie"
+                            />
+                        </Link>
+
                         <p>
                             Un cadre confortable et chaleureux pour vos séjours,
                             vos déplacements professionnels et vos moments de
                             détente.
                         </p>
+
+                        {/* Réseaux sociaux */}
+
                         <ul className="knsl-footer__socials">
                             {SOCIALS.map(({ label, href, Icon }) => (
                                 <li key={label}>
@@ -81,7 +93,7 @@ export default function Footer() {
                                         href={href}
                                         aria-label={label}
                                         target="_blank"
-                                        rel="noreferrer"
+                                        rel="noopener noreferrer"
                                     >
                                         <Icon />
                                     </a>
@@ -90,29 +102,33 @@ export default function Footer() {
                         </ul>
                     </div>
 
-                    {/* <nav className="knsl-footer__cols" aria-label="Pied de page">
-                        {COLUMNS.map((col) => (
-                            <div key={col.title}>
-                                <h5>{col.title}</h5>
-                                <ul>
-                                    {col.links.map((l) => (
-                                        <li key={l.href}>
-                                            <Link href={l.href}>{l.label}</Link>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
+                    {/* Navigation rapide */}
+
+                    <nav
+                        className="knsl-footer__cols"
+                        aria-label="Navigation de pied de page"
+                    >
+                        {QUICK_LINKS.map((link) => (
+                            <Link
+                                key={link.href}
+                                href={link.href}
+                            >
+                                {link.label}
+                            </Link>
                         ))}
-                        
-                    </nav> */}
+                    </nav>
+
                 </div>
+
+                {/* Copyright */}
 
                 <div className="knsl-footer__bottom">
                     <p>
-                        © {new Date().getFullYear()} Résidence Néhémie. Tous
-                        droits réservés.
+                        © {new Date().getFullYear()} Résidence Néhémie.
+                        Tous droits réservés.
                     </p>
                 </div>
+
             </div>
         </footer>
     );

@@ -1,194 +1,284 @@
+
+/* =====================================================
+   FOOTER — RÉSIDENCE NÉHÉMIE
+   Compact Luxury Design
+===================================================== */
+
 .knsl-footer {
-    --f-bg: #f8252c; /* Couleur de base ou de fallback */
-    --f-text: #e0e0e0;
-    --f-muted: #a3a3a3;
-    --f-line: rgba(255, 255, 255, 0.15);
-    --f-gold: #f3456b;
-    
-    /* Gestion de l'image de fond floutée avec superposition sombre/teintée */
+    --f-bg: #172522;
+    --f-text: #e8eeee;
+    --f-muted: #b6c3c0;
+    --f-line: rgba(255, 255, 255, 0.14);
+    --f-accent: #f3456b;
+
     position: relative;
-    background: linear-gradient(
-        to bottom, 
-        rgba(237, 82, 87, 0.85), 
-        rgba(20, 20, 20, 0.92)
-      ), 
-      url('/img/Hero-Gallery/ESPACE COMMUN 2.jpg') no-repeat center center / cover;
-    
+    isolation: isolate;
+    background:
+        linear-gradient(
+            110deg,
+            rgba(117, 30, 48, 0.91),
+            rgba(117, 30, 48, 0.91)
+        ),
+        url('/img/Hero-Gallery/ESPACE%20COMMUN%202.jpg')
+        center 55% / cover no-repeat;
+
     color: var(--f-text);
     font-family: 'Barlow', system-ui, sans-serif;
     font-size: 14px;
-    line-height: 1.7;
-    padding: 60px clamp(20px, 7vw, 100px) 0;
+    line-height: 1.6;
+
+    padding: 15px clamp(20px, 6vw, 90px) 0;
     overflow: hidden;
 }
 
-/* Optionnel : si vous voulez appliquer un flou natif sur l'arrière-plan via un pseudo-élément */
+/* Léger flou d'arrière-plan */
+
 .knsl-footer::before {
     content: '';
     position: absolute;
     inset: 0;
-    backdrop-filter: blur(8px); /* Ajustez l'intensité du flou ici si nécessaire */
-    z-index: 0;
+    backdrop-filter: blur(4px);
+    z-index: -1;
     pointer-events: none;
 }
 
-/* S'assure que le contenu reste au-dessus du pseudo-élément de flou */
-.knsl-footer__inner { 
-    position: relative;
-    z-index: 1;
-    max-width: 1152px; 
-    margin: 0 auto; 
+/* Conteneur principal */
+
+.knsl-footer__inner {
+    max-width: 1250px;
+    margin: 0 auto;
 }
+
+/* Partie supérieure */
 
 .knsl-footer__top {
     display: flex;
+    align-items: center;
     justify-content: space-between;
-    gap: 48px;
-    padding-bottom: 48px;
+    gap: 50px;
+    padding-bottom: 15px;
 }
 
 /* Marque */
-.knsl-footer__brand { max-width: 360px; }
-.knsl-footer__brand img { display: block; height: 80px; width: auto; margin-bottom: 14px; }
-.knsl-footer__brand p { margin: 0 0 26px; }
 
-.knsl-footer__socials { display: flex; flex-wrap: wrap; gap: 10px; margin: 0; padding: 0; list-style: none; }
-.knsl-footer__socials a {
-    display: grid; place-items: center;
-    width: 55px;height: 55px;
-    border: 1px solid var(--f-line); border-radius: 50%;
-    color: var(--f-muted); font-size: 13px;
-    transition: color 0.2s, border-color 0.2s;
-}
-.knsl-footer__socials a:hover,
-.knsl-footer__socials a:focus-visible { color: var(--f-gold); border-color: var(--f-gold); outline: none; }
-
-/* Colonnes de liens */
-.knsl-footer__cols { display: flex; gap: clamp(32px, 5vw, 48px); }
-.knsl-footer__cols h5 {
-    margin: 0 0 24px;
-    color: #ffffff;
-    font-size: 11px; font-weight: 700;
-    letter-spacing: 0.16em; text-transform: uppercase;
-}
-.knsl-footer__cols ul { margin: 0; padding: 0; list-style: none; }
-.knsl-footer__cols li + li { margin-top: 16px; }
-.knsl-footer__cols a { color: var(--f-text); text-decoration: none; transition: color 0.2s; }
-.knsl-footer__cols a:hover,
-.knsl-footer__cols a:focus-visible { color: #fff; outline: none; }
-.knsl-footer__wa { display: inline-flex; align-items: center; gap: 7px; }
-.knsl-footer__wa svg { color: var(--f-gold); font-size: 12px; }
-
-/* Bas de page */
-.knsl-footer__bottom {
-    border-top: 1px solid var(--f-line);
-    padding: 22px 0 26px;
-}
-.knsl-footer__bottom p { margin: 0; font-size: 13px; }
-
-@media (max-width: 820px) {
-    .knsl-footer__top { flex-direction: column; }
-    .knsl-footer__cols { flex-wrap: wrap; }
+.knsl-footer__brand {
+    flex: 0 1 380px;
+    max-width: 380px;
 }
 
-.knsl-footer {
-    --f-bg: #f8252c; /* Couleur de base ou de fallback */
-    --f-text: #e0e0e0;
-    --f-muted: #a3a3a3;
-    --f-line: rgba(255, 255, 255, 0.15);
-    --f-gold: #f3456b;
-    
-    /* Gestion de l'image de fond floutée avec superposition sombre/teintée */
-    position: relative;
-    background: linear-gradient(
-        to bottom, 
-        rgba(237, 82, 87, 0.85), 
-        rgba(20, 20, 20, 0.92)
-    ), 
-    url('/img/Hero-Gallery/ESPACE COMMUN 2.jpg') no-repeat center center / cover;
-    
-    color: var(--f-text);
-    font-family: 'Barlow', system-ui, sans-serif;
-    font-size: 14px;
+.knsl-footer__brand img {
+    display: block;
+    width: auto;
+    height: 58px;
+    object-fit: contain;
+    margin-bottom: 10px;
+}
+
+.knsl-footer__brand p {
+    max-width: 350px;
+    margin: 0 0 10px;
+    color: var(--f-muted);
+    font-size: 13px;
     line-height: 1.7;
-    padding: 60px clamp(20px, 7vw, 100px) 0;
-    overflow: hidden;
 }
 
-/* Optionnel : si vous voulez appliquer un flou natif sur l'arrière-plan via un pseudo-élément */
-.knsl-footer::before {
+/* Réseaux sociaux */
+
+.knsl-footer__socials {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 9px;
+
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.knsl-footer__socials a {
+    display: grid;
+    place-items: center;
+
+    width: 36px;
+    height: 36px;
+
+    border: 1px solid var(--f-line);
+    border-radius: 50%;
+
+    color: var(--f-muted);
+    font-size: 14px;
+    text-decoration: none;
+
+    transition:
+        color 0.25s ease,
+        background 0.25s ease,
+        border-color 0.25s ease,
+        transform 0.25s ease;
+}
+
+.knsl-footer__socials a:hover,
+.knsl-footer__socials a:focus-visible {
+    color: #ffffff;
+    background: var(--f-accent);
+    border-color: var(--f-accent);
+    transform: translateY(-3px);
+    outline: none;
+}
+
+/* Navigation rapide */
+
+.knsl-footer__cols {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 13px 30px;
+    margin-left: auto;
+}
+
+.knsl-footer__cols a {
+    position: relative;
+    display: inline-block;
+
+    color: var(--f-text);
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    white-space: nowrap;
+
+    transition: color 0.25s ease;
+}
+
+.knsl-footer__cols a::after {
     content: '';
     position: absolute;
-    inset: 0;
-    backdrop-filter: blur(8px); /* Ajustez l'intensité du flou ici si nécessaire */
-    z-index: 0;
-    pointer-events: none;
+    left: 0;
+    bottom: -5px;
+
+    width: 0;
+    height: 1px;
+
+    background: var(--f-accent);
+    transition: width 0.25s ease;
 }
 
-/* S'assure que le contenu reste au-dessus du pseudo-élément de flou */
-.knsl-footer__inner { 
-    position: relative;
-    z-index: 1;
-    max-width: 1152px; 
-    margin: 0 auto; 
-}
-
-.knsl-footer__top {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 48px;
-    padding-bottom: 48px;
-}
-
-/* Marque */
-.knsl-footer__brand { max-width: 360px; }
-.knsl-footer__brand img { display: block; height: 80px; width: auto; margin-bottom: 14px; }
-.knsl-footer__brand p { margin: 0 0 26px; }
-
-.knsl-footer__socials { display: flex; flex-wrap: wrap; gap: 10px; margin: 0; padding: 0; list-style: none; }
-.knsl-footer__socials a {
-    display: grid; place-items: center;
-    width: 55px;height: 55px;
-    border: 1px solid var(--f-line); border-radius: 50%;
-    color: var(--f-muted); font-size: 13px;
-    transition: color 0.2s, border-color 0.2s;
-}
-.knsl-footer__socials a:hover,
-.knsl-footer__socials a:focus-visible { color: var(--f-gold); border-color: var(--f-gold); outline: none; }
-
-/* Colonnes de liens (Poussées vers la droite sur desktop) */
-.knsl-footer__cols { 
-    display: flex; 
-    gap: clamp(32px, 5vw, 64px); 
-    margin-left: auto; /* Permet de repousser les colonnes entièrement à droite */
-}
-
-.knsl-footer__cols h5 {
-    margin: 0 0 24px;
-    color: #ffffff;
-    font-size: 11px; font-weight: 700;
-    letter-spacing: 0.16em; text-transform: uppercase;
-}
-.knsl-footer__cols ul { margin: 0; padding: 0; list-style: none; }
-.knsl-footer__cols li + li { margin-top: 16px; }
-.knsl-footer__cols a { color: var(--f-text); text-decoration: none; transition: color 0.2s; }
 .knsl-footer__cols a:hover,
-.knsl-footer__cols a:focus-visible { color: #fff; outline: none; }
-.knsl-footer__wa { display: inline-flex; align-items: center; gap: 7px; }
-.knsl-footer__wa svg { color: var(--f-gold); font-size: 12px; }
+.knsl-footer__cols a:focus-visible {
+    color: var(--f-accent);
+    outline: none;
+}
+
+.knsl-footer__cols a:hover::after,
+.knsl-footer__cols a:focus-visible::after {
+    width: 100%;
+}
 
 /* Bas de page */
-.knsl-footer__bottom {
-    border-top: 1px solid var(--f-line);
-    padding: 22px 0 26px;
-}
-.knsl-footer__bottom p { margin: 0; font-size: 13px; }
 
-@media (max-width: 820px) {
-    .knsl-footer__top { flex-direction: column; }
-    .knsl-footer__cols { 
-        margin-left: 0; /* Annule le déport à droite sur mobile */
-        flex-wrap: wrap; 
+.knsl-footer__bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    /* min-height: 53px; */
+    border-top: 1px solid var(--f-line);
+    padding: 12px 0;
+}
+
+.knsl-footer__bottom p {
+    margin: 0;
+    color: var(--f-muted);
+    font-size: 12px;
+}
+
+/* =====================================================
+   TABLETTE
+===================================================== */
+
+@media (max-width: 900px) {
+    .knsl-footer {
+        padding-top: 32px;
+    }
+
+    .knsl-footer__top {
+        align-items: flex-start;
+        gap: 30px;
+    }
+
+    .knsl-footer__brand {
+        flex-basis: 300px;
+    }
+
+    .knsl-footer__cols {
+        gap: 15px 20px;
+    }
+}
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 640px) {
+    .knsl-footer {
+        padding: 30px 22px 0;
+    }
+
+    .knsl-footer__top {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 25px;
+        padding-bottom: 25px;
+    }
+
+    .knsl-footer__brand {
+        flex: none;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .knsl-footer__brand img {
+        height: 52px;
+        margin-bottom: 9px;
+    }
+
+    .knsl-footer__brand p {
+        max-width: 100%;
+        margin-bottom: 15px;
+        font-size: 13px;
+    }
+
+    .knsl-footer__cols {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 14px 22px;
+        margin: 0;
+    }
+
+    .knsl-footer__cols a {
+        font-size: 13px;
+    }
+
+    .knsl-footer__bottom {
+        min-height: 48px;
+        padding: 12px 0;
+    }
+
+    .knsl-footer__bottom p {
+        font-size: 11px;
+    }
+}
+
+/* Très petits écrans */
+
+@media (max-width: 360px) {
+    .knsl-footer {
+        padding-right: 16px;
+        padding-left: 16px;
+    }
+
+    .knsl-footer__cols {
+        gap: 12px 16px;
     }
 }

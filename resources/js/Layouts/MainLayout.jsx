@@ -1,6 +1,8 @@
 import Header from "../Components/Header";
 import Footer from "../Components/Footer";
+import MapSection from '../Components/MapSection';
 import ChatWidget from "../Components/Chatwidget";
+
 export default function MainLayout({ children }) {
     return (
         <div className="knsl-app">
@@ -11,7 +13,7 @@ export default function MainLayout({ children }) {
                 <ChatWidget />
                 {children}
             </main>
-
+            <MapSection />
             <Footer />
         </div>
     );

@@ -253,17 +253,17 @@ export default function AppartSection() {
 
                 <div className="appart-bottom">
 
-                    <p>
+                    {/* <p>
                         Votre confort mérite un cadre exceptionnel.
-                    </p>
+                    </p> */}
 
-                    <Link
+                    {/* <Link
                         href="/reservation"
                         className="appart-discover-link"
                     >
                         Découvrir nos appartements
                         <span aria-hidden="true">→</span>
-                    </Link>
+                    </Link> */}
 
                 </div>
 
