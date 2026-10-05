@@ -563,11 +563,11 @@
 .gallery-card__line {
     display: block;
 
-    width: 30px;
-
+    width: 20px;
+    color: #f3456b;
     height: 1px;
 
-    background: rgba(255, 255, 255, 0.6);
+    background: #f3456b;
 }
 
 

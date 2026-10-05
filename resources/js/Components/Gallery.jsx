@@ -44,7 +44,7 @@ const apartments = [
         images: [
             {
                 src: "/img/Gallery/Appart1/RN2_Salon 2.jpg",
-                captionKey: "livingRoom",
+                captionKey: "Salon",
             },
             {
                 src: "/img/Gallery/Appart1/RN2_Chambre.jpg",
@@ -86,7 +86,19 @@ const apartments = [
         images: [
             {
                 src: "/img/Gallery/Appart3/RN8_Salon.jpg",
-                captionKey: "livingSpace",
+                captionKey: "SALON",
+            },
+            {
+                src: "/img/Gallery/Appart3/RN8_Chambre.jpg",
+                captionKey: "masterBedroom",
+            },
+            {
+                src: "/img/Gallery/Appart3/RN8_Chambre.jpg",
+                captionKey: "masterBedroom",
+            },
+            {
+                src: "/img/Gallery/Appart3/RN8_Chambre.jpg",
+                captionKey: "masterBedroom",
             },
             {
                 src: "/img/Gallery/Appart3/RN8_Chambre.jpg",
@@ -379,16 +391,8 @@ export default function Gallery() {
                     <div className="gallery-grid">
                         {apartment.images.map(
                             (image, index) => {
-
-                                /*
-                                 * La traduction dépend :
-                                 *
-                                 * appartement actif
-                                 *      +
-                                 * clé de légende
-                                 */
                                 const caption = t(
-                                    `gallery.apartments.${apartment.key}.images.${image.captionKey}`
+                                    `${image.captionKey}`
                                 );
 
                                 return (
@@ -431,7 +435,7 @@ export default function Gallery() {
                                             <div className="gallery-card__overlay">
                                                 <div className="gallery-card__caption">
 
-                                                    <span className="gallery-card__number">
+                                                    {/* <span className="gallery-card__number">
                                                         {String(
                                                             index +
                                                                 1
@@ -439,7 +443,7 @@ export default function Gallery() {
                                                             2,
                                                             "0"
                                                         )}
-                                                    </span>
+                                                    </span> */}
 
                                                     <span className="gallery-card__line"></span>
 
@@ -511,7 +515,7 @@ export default function Gallery() {
                             {selectedImage.caption}
                         </h3>
 
-                        <small>
+                        {/* <small>
                             {t(
                                 "gallery.lightbox.photo",
                                 {
@@ -520,7 +524,7 @@ export default function Gallery() {
                                         1,
                                 }
                             )}
-                        </small>
+                        </small> */}
                     </div>
                 </div>
             )}
