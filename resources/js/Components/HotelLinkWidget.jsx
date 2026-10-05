@@ -1,9 +1,13 @@
-import { useEffect } from 'react';
+import { Head } from '@inertiajs/react';
+import { useEffect, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import './css/HotelLinkWidget.css';
 
 const HOTEL_LINK_SCRIPT = 'https://book.securebookings.net/js/v2/widget.all.js';
-const HOTEL_LINK_CUSTOMIZE =
-    'https://book.securebookings.net/widgetCustomize?lang=en&widgetType=Widget&id=6dfc3965-177b-1790682794-4a54-8af1-a5a33a0aef28&ajax=true';
+const WIDGET_ID = '6dfc3965-177b-1790682794-4a54-8af1-a5a33a0aef28';
+
+const customizeUrl = (lang) =>
+    `https://book.securebookings.net/widgetCustomize?lang=${lang}&widgetType=Widget&id=${WIDGET_ID}&ajax=true`;
 
 const Icon = ({ d }) => (
     <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
@@ -12,25 +16,25 @@ const Icon = ({ d }) => (
 );
 
 const TRUST = [
-    ['Réservation sécurisée', 'M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5z'],
-    ['Meilleure garantie de taux', 'M3 12 12 3h9v9l-9 9z'],
-    ['Annulation flexible disponible', 'M6 10V8a6 6 0 1 1 12 0v2h2v12H4V10z'],
+    ['booking.trust.secure', 'M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5z'],
+    ['booking.trust.rate', 'M3 12 12 3h9v9l-9 9z'],
+    ['booking.trust.cancel', 'M6 10V8a6 6 0 1 1 12 0v2h2v12H4V10z'],
 ];
 
 function Hero() {
+    const { t } = useTranslation();
+
     return (
         <section className="booking-hero">
             <div className="booking-hero__content">
-                <p className="booking-hero__eyebrow">Les appartements signatures · East Legon, Accra</p>
-                <h1>Réservez votre suite</h1>
-                <p className="booking-hero__sub">
-                    Les meilleurs tarifs sont garantis lorsque vous réservez directement. Pas de frais cachés.
-                </p>
+                <p className="booking-hero__eyebrow">{t('booking.eyebrow')}</p>
+                <h1>{t('booking.title')}</h1>
+                <p className="booking-hero__sub">{t('booking.subtitle')}</p>
                 <ul className="booking-trust">
-                    {TRUST.map(([label, d]) => (
-                        <li key={label}>
+                    {TRUST.map(([key, d]) => (
+                        <li key={key}>
                             <Icon d={d} />
-                            {label}
+                            {t(key)}
                         </li>
                     ))}
                 </ul>
@@ -42,7 +46,7 @@ function Hero() {
 const STICKY_TOP = 108; // distance du haut de l'écran, en px (hauteur de votre Header fixe)
 // Si la barre n'est pas détectée automatiquement, indiquez ici son sélecteur (via l'inspecteur)
 const SEARCH_BAR_SELECTOR = null; // ex. '#hbe-bws-wrapper .search-bar'
-const STICKY_DEBUG = true; // affiche des messages [sticky] dans la console ; mettre false ensuite
+const STICKY_DEBUG = false; // mettre true pour voir les messages [sticky] dans la console
 
 const SEARCH_LABEL = /^\s*(rechercher?|search|buscar)\s*$/i;
 
@@ -154,9 +158,23 @@ function useStickySearchBar(top = STICKY_TOP) {
 }
 
 function HotelLinkWidget() {
+    const { i18n } = useTranslation();
+    const lang = i18n.language.startsWith('en') ? 'en' : 'fr';
+
+    /* Langue au moment où la page a été chargée */
+    const initialLang = useRef(lang);
+
+    /* Le widget est une appli AngularJS qui ne démarre qu'une fois par chargement :
+       au changement de langue, on recharge la page (la langue est déjà sauvegardée) */
+    useEffect(() => {
+        if (initialLang.current !== lang) window.location.reload();
+    }, [lang]);
+
     useStickySearchBar();
 
     useEffect(() => {
+        if (lang !== initialLang.current) return undefined;
+
         let cancelled = false;
         const added = [];
 
@@ -170,13 +188,13 @@ function HotelLinkWidget() {
             added.push(s);
         };
 
-        load(HOTEL_LINK_SCRIPT, () => load(HOTEL_LINK_CUSTOMIZE));
+        load(HOTEL_LINK_SCRIPT, () => load(customizeUrl(lang)));
 
         return () => {
             cancelled = true;
             added.forEach((s) => s.remove());
         };
-    }, []);
+    }, [lang]);
 
     return (
         <div className="hotel-link-widget-container">
@@ -190,8 +208,11 @@ function HotelLinkWidget() {
 }
 
 export default function BookingPage() {
+    const { t } = useTranslation();
+
     return (
         <div className="booking-page">
+            <Head title={t('booking.pageTitle')} />
             <Hero />
             <main>
                 <HotelLinkWidget />

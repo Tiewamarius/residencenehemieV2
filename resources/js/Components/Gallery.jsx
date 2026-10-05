@@ -1,178 +1,237 @@
-import { useEffect, useState } from 'react';
-import { Link } from '@inertiajs/react';
-import './css/Gallery.css';
 
-/*
-|--------------------------------------------------------------------------
-| HERO MEDIA
-|--------------------------------------------------------------------------
-| Les médias peuvent être des images OU des vidéos.
-| Un média sera choisi aléatoirement à chaque chargement.
-*/
+import { useEffect, useState } from "react";
+import { Link } from "@inertiajs/react";
+import { useTranslation } from "react-i18next";
+import "./css/Gallery.css";
+
+/* ---------------------------------------------------------------------------
+   HERO
+   Image OU vidéo, choisie aléatoirement à chaque chargement
+--------------------------------------------------------------------------- */
 
 const heroMedia = [
     {
-        type: 'image',
-        src: '/img/gallery-hero/hero-1.jpg',
-        alt: 'Résidence Néhémie',
+        type: "image",
+        src: "/img/Hero-gallery/RN8_Salon.jpg",
+        altKey: "heroMedia.residence",
     },
     {
-        type: 'image',
-        src: '/img/Hero-Gallery/ESPACE COMMUN 2.jpg',
-        alt: 'Appartement Résidence Néhémie',
+        type: "image",
+        src: "/img/Hero-gallery/RN8_Salon.jpg",
+        altKey: "heroMedia.apartment",
     },
     {
-        type: 'image',
-        src: '/img/Hero-Gallery/ESPACE COMMUN 2.jpg',
-        alt: 'Espace extérieur Résidence Néhémie',
+        type: "image",
+        src: "/img/Hero-gallery/RN8_Salon.jpg",
+        altKey: "heroMedia.outdoor",
     },
     {
-        type: 'video',
-        src: '/videos/gallery-hero/hero-1.mp4',
+        type: "video",
+        src: "/videos/gallery-hero/hero-1.mp4",
     },
     {
-        type: 'video',
-        src: '/videos/gallery-hero/hero-2.mp4',
+        type: "video",
+        src: "/videos/gallery-hero/hero-2.mp4",
     },
 ];
-
-
-/*
-|--------------------------------------------------------------------------
-| APARTMENTS
-|--------------------------------------------------------------------------
-*/
 
 const apartments = [
     {
         id: 1,
-        title: 'Appartement 1',
-        location: 'Saly, Sénégal',
+        key: "signature",
+        locationKey: "bingerville",
 
         images: [
             {
-                src: '/img/apartments/appartement-1.jpg',
-                caption: 'Salon lumineux et espace de vie',
+                src: "/img/Gallery/Appart1/RN2_Salon 2.jpg",
+                captionKey: "livingRoom",
             },
             {
-                src: '/img/apartments/appartement-1-2.jpg',
-                caption: 'Chambre principale',
+                src: "/img/Gallery/Appart1/RN2_Chambre.jpg",
+                captionKey: "masterBedroom",
             },
             {
-                src: '/img/apartments/appartement-1-3.jpg',
-                caption: 'Terrasse avec vue sur le jardin',
+                src: "/img/Gallery/Appart1/RN2_Terrasse.jpg",
+                captionKey: "terrace",
             },
         ],
     },
 
     {
         id: 2,
-        title: 'Appartement 2',
-        location: 'Saly, Sénégal',
+        key: "elegance",
+        locationKey: "bingerville",
 
         images: [
             {
-                src: '/img/apartments/appartement-2.jpg',
-                caption: 'Salon moderne et confortable',
+                src: "/img/Gallery/Appart2/RN4-Salon.jpg",
+                captionKey: "modernLivingRoom",
             },
             {
-                src: '/img/apartments/appartement-2-2.jpg',
-                caption: 'Chambre avec literie premium',
+                src: "/img/Gallery/Appart2/RN4-Chambre.jpg",
+                captionKey: "premiumBedroom",
             },
             {
-                src: '/img/apartments/appartement-2-3.jpg',
-                caption: 'Espace extérieur privé',
+                src: "/img/Gallery/Appart2/RN4-Terrasse.jpg",
+                captionKey: "privateOutdoor",
             },
         ],
     },
 
     {
         id: 3,
-        title: 'Appartement 3',
-        location: 'Saly, Sénégal',
+        key: "prestige",
+        locationKey: "bingerville",
 
         images: [
             {
-                src: '/img/apartments/appartement-3.jpg',
-                caption: 'Espace de séjour',
+                src: "/img/Gallery/Appart3/RN8_Salon.jpg",
+                captionKey: "livingSpace",
             },
             {
-                src: '/img/apartments/appartement-3-2.jpg',
-                caption: 'Chambre principale',
+                src: "/img/Gallery/Appart3/RN8_Chambre.jpg",
+                captionKey: "masterBedroom",
             },
             {
-                src: '/img/apartments/appartement-3-3.jpg',
-                caption: 'Terrasse de l’appartement',
+                src: "/img/Gallery/Appart3/RN8_Terrasse.jpg",
+                captionKey: "terrace",
             },
         ],
     },
 ];
 
+/* ---------------------------------------------------------------------------
+   NOM DE L'APPARTEMENT
+
+   Les noms viennent des traductions :
+
+   appart.items.signature.name
+   appart.items.elegance.name
+   appart.items.prestige.name
+--------------------------------------------------------------------------- */
+
+const nameKey = (apartment) =>
+    `appart.items.${apartment.key}.name`;
+
+
+const getInitialApartment = () => {
+    const params = new URLSearchParams(
+        window.location.search
+    );
+
+    const apartmentKey = params.get("apartment");
+
+    const apartmentExists = apartments.some(
+        (item) => item.key === apartmentKey
+    );
+
+    return apartmentExists
+        ? apartmentKey
+        : "signature";
+};
+
+/* ---------------------------------------------------------------------------
+   COMPOSANT
+--------------------------------------------------------------------------- */
 
 export default function Gallery() {
+    const { t } = useTranslation();
 
-    /*
-    |--------------------------------------------------------------------------
-    | STATES
-    |--------------------------------------------------------------------------
-    */
+    /* Appartement actuellement sélectionné */
+    const [activeApartment, setActiveApartment] =
+        useState(getInitialApartment);
 
-    const [activeApartment, setActiveApartment] = useState(1);
+    /* Image actuellement ouverte dans la lightbox */
+    const [selectedImage, setSelectedImage] =
+        useState(null);
 
-    const [selectedImage, setSelectedImage] = useState(null);
+    /* Média hero */
+    const [heroMediaItem, setHeroMediaItem] =
+        useState(null);
 
-    const [heroMediaItem, setHeroMediaItem] = useState(null);
-
-
-    /*
-    |--------------------------------------------------------------------------
-    | RANDOM HERO MEDIA
-    |--------------------------------------------------------------------------
-    */
+    /* ================================================================
+       HERO ALÉATOIRE
+    ================================================================ */
 
     useEffect(() => {
-
         const randomIndex = Math.floor(
             Math.random() * heroMedia.length
         );
 
         setHeroMediaItem(heroMedia[randomIndex]);
-
     }, []);
 
+    /* ================================================================
+       FERMETURE LIGHTBOX AVEC ESC
+    ================================================================ */
 
-    /*
-    |--------------------------------------------------------------------------
-    | ACTIVE APARTMENT
-    |--------------------------------------------------------------------------
-    */
+    useEffect(() => {
+        if (!selectedImage) {
+            return undefined;
+        }
 
-    const apartment = apartments.find(
-        (item) => item.id === activeApartment
+        const handleKeyDown = (event) => {
+            if (event.key === "Escape") {
+                setSelectedImage(null);
+            }
+        };
+
+        document.addEventListener(
+            "keydown",
+            handleKeyDown
+        );
+
+        return () => {
+            document.removeEventListener(
+                "keydown",
+                handleKeyDown
+            );
+        };
+    }, [selectedImage]);
+
+    /* ================================================================
+       APPARTEMENT ACTIF
+    ================================================================ */
+
+    const apartment =
+        apartments.find(
+            (item) => item.key === activeApartment
+        ) || apartments[0];
+
+    /* Nom traduit */
+    const apartmentTitle = t(
+        nameKey(apartment)
     );
 
+    /* Localisation traduite */
+    const apartmentLocation = t(
+        `gallery.locations.${apartment.locationKey}`
+    );
 
-    /*
-    |--------------------------------------------------------------------------
-    | LIGHTBOX
-    |--------------------------------------------------------------------------
-    */
+    /* ================================================================
+       FERMER LIGHTBOX
+    ================================================================ */
 
     const closeLightbox = () => {
         setSelectedImage(null);
     };
 
+    /* ================================================================
+       CHANGER D'APPARTEMENT
+    ================================================================ */
 
-    /*
-    |--------------------------------------------------------------------------
-    | RENDER
-    |--------------------------------------------------------------------------
-    */
+    const changeApartment = (apartmentKey) => {
+        setActiveApartment(apartmentKey);
+
+        setSelectedImage(null);
+    };
+
+    /* ================================================================
+       RENDER
+    ================================================================ */
 
     return (
-
         <main className="gallery-page">
-
 
             {/* =========================================================
                 HERO
@@ -180,11 +239,8 @@ export default function Gallery() {
 
             <section className="gallery-hero">
 
-
-                {/* MEDIA */}
-
-                {heroMediaItem?.type === 'video' && (
-
+                {/* HERO VIDÉO */}
+                {heroMediaItem?.type === "video" && (
                     <video
                         className="gallery-hero__media"
                         src={heroMediaItem.src}
@@ -195,265 +251,258 @@ export default function Gallery() {
                         preload="auto"
                         aria-hidden="true"
                     />
-
                 )}
 
-
-                {heroMediaItem?.type === 'image' && (
-
+                {/* HERO IMAGE */}
+                {heroMediaItem?.type === "image" && (
                     <img
                         className="gallery-hero__media"
                         src={heroMediaItem.src}
-                        alt={heroMediaItem.alt}
+                        alt={t(
+                            `gallery.${heroMediaItem.altKey}`
+                        )}
                     />
-
                 )}
 
-
                 {/* OVERLAY */}
+                <div
+                    className="gallery-hero__overlay"
+                    aria-hidden="true"
+                />
 
-                <div className="gallery-hero__overlay"></div>
-
-
-                {/* CONTENT */}
-
+                {/* CONTENU HERO */}
                 <div className="gallery-hero__content">
-
                     <span className="gallery-hero__subtitle">
-                        DÉCOUVREZ NOS ESPACES
+                        {t("gallery.hero.subtitle")}
                     </span>
 
                     <h1>
-                        Galerie des appartements
+                        {t("gallery.hero.title")}
                     </h1>
 
                     <p>
-                        Découvrez nos appartements en images
-                        et choisissez celui qui vous correspond.
+                        {t("gallery.hero.description")}
                     </p>
-
                 </div>
-
             </section>
-
 
             {/* =========================================================
                 GALERIE
             ========================================================= */}
 
             <section className="gallery-section">
-
                 <div className="gallery-container">
 
-
-                    {/* =====================================================
-                        HEADING
-                    ===================================================== */}
+                    {/* =================================================
+                        TITRE + RÉSERVATION
+                    ================================================= */}
 
                     <div className="gallery-heading">
-
                         <div>
-
-                            <span className="gallery-label">
-                                NOS APPARTEMENTS
-                            </span>
-
                             <h2>
-                                {apartment.title}
+                                {apartmentTitle}
                             </h2>
-
                         </div>
-
 
                         <Link
                             href="/reservation"
                             className="gallery-reservation-btn"
                         >
-                            Réserver
+                            {t("gallery.book")}
                         </Link>
-
                     </div>
 
-
-                    {/* =====================================================
-                        TABS
-                    ===================================================== */}
+                    {/* =================================================
+                        ONGLETS
+                    ================================================= */}
 
                     <div className="gallery-tabs-wrapper">
-
                         <div
                             className="gallery-tabs"
                             role="tablist"
-                            aria-label="Choisir un appartement"
+                            aria-label={t(
+                                "gallery.chooseApartment"
+                            )}
                         >
+                            {apartments.map((item) => {
+                                const isActive =
+                                    activeApartment ===
+                                    item.key;
 
-                            {apartments.map((item) => (
-
-                                <button
-                                    key={item.id}
-                                    type="button"
-                                    role="tab"
-                                    aria-selected={
-                                        activeApartment === item.id
-                                    }
-                                    className={
-                                        activeApartment === item.id
-                                            ? 'gallery-tab active'
-                                            : 'gallery-tab'
-                                    }
-                                    onClick={() => {
-
-                                        setActiveApartment(item.id);
-
-                                        setSelectedImage(null);
-
-                                    }}
-                                >
-                                    {item.title}
-                                </button>
-
-                            ))}
-
+                                return (
+                                    <button
+                                        key={item.id}
+                                        type="button"
+                                        role="tab"
+                                        aria-selected={
+                                            isActive
+                                        }
+                                        className={
+                                            isActive
+                                                ? "gallery-tab active"
+                                                : "gallery-tab"
+                                        }
+                                        onClick={() =>
+                                            changeApartment(
+                                                item.key
+                                            )
+                                        }
+                                    >
+                                        {t(
+                                            nameKey(item)
+                                        )}
+                                    </button>
+                                );
+                            })}
                         </div>
-
                     </div>
 
-
-                    {/* =====================================================
+                    {/* =================================================
                         INFORMATIONS
-                    ===================================================== */}
+                    ================================================= */}
 
                     <div className="gallery-location">
-
                         <span>
-                            {apartment.location}
+                            {apartmentLocation}
                         </span>
 
                         <span className="gallery-photo-count">
-                            {apartment.images.length} photos
+                            {apartment.images.length}{" "}
+                            {t("gallery.photos")}
                         </span>
-
                     </div>
 
-
-                    {/* =====================================================
-                        PHOTO GRID
-                    ===================================================== */}
+                    {/* =================================================
+                        PHOTOS DE L'APPARTEMENT ACTIF
+                    ================================================= */}
 
                     <div className="gallery-grid">
+                        {apartment.images.map(
+                            (image, index) => {
 
-                        {apartment.images.map((image, index) => (
+                                /*
+                                 * La traduction dépend :
+                                 *
+                                 * appartement actif
+                                 *      +
+                                 * clé de légende
+                                 */
+                                const caption = t(
+                                    `gallery.apartments.${apartment.key}.images.${image.captionKey}`
+                                );
 
-                            <article
-                                className="gallery-card"
-                                key={image.src}
-                            >
+                                return (
+                                    <article
+                                        className="gallery-card"
+                                        key={image.src}
+                                    >
+                                        <button
+                                            type="button"
+                                            className="gallery-image-button"
+                                            onClick={() =>
+                                                setSelectedImage(
+                                                    {
+                                                        ...image,
+                                                        title:
+                                                            apartmentTitle,
+                                                        location:
+                                                            apartmentLocation,
+                                                        caption,
+                                                        index,
+                                                    }
+                                                )
+                                            }
+                                            aria-label={t(
+                                                "gallery.viewPhoto",
+                                                {
+                                                    caption,
+                                                }
+                                            )}
+                                        >
 
-                                <button
-                                    type="button"
-                                    className="gallery-image-button"
+                                            {/* IMAGE */}
+                                            <img
+                                                src={image.src}
+                                                alt={caption}
+                                                loading="lazy"
+                                            />
 
-                                    onClick={() => {
+                                            {/* OVERLAY */}
+                                            <div className="gallery-card__overlay">
+                                                <div className="gallery-card__caption">
 
-                                        setSelectedImage({
-                                            ...image,
-                                            title: apartment.title,
-                                            location: apartment.location,
-                                            index,
-                                        });
+                                                    <span className="gallery-card__number">
+                                                        {String(
+                                                            index +
+                                                                1
+                                                        ).padStart(
+                                                            2,
+                                                            "0"
+                                                        )}
+                                                    </span>
 
-                                    }}
+                                                    <span className="gallery-card__line"></span>
 
-                                    aria-label={`Voir ${image.caption}`}
-                                >
+                                                    <p>
+                                                        {
+                                                            caption
+                                                        }
+                                                    </p>
 
-                                    <img
-                                        src={image.src}
-                                        alt={image.caption}
-                                        loading="lazy"
-                                    />
-
-
-                                    {/* IMAGE OVERLAY */}
-
-                                    <div className="gallery-card__overlay">
-
-                                        <div className="gallery-card__caption">
-
-                                            <span className="gallery-card__number">
-                                                {String(index + 1).padStart(2, '0')}
-                                            </span>
-
-                                            <span className="gallery-card__line"></span>
-
-                                            <p>
-                                                {image.caption}
-                                            </p>
-
-                                        </div>
-
-                                    </div>
-
-                                </button>
-
-                            </article>
-
-                        ))}
-
+                                                </div>
+                                            </div>
+                                        </button>
+                                    </article>
+                                );
+                            }
+                        )}
                     </div>
-
                 </div>
-
             </section>
-
 
             {/* =========================================================
                 LIGHTBOX
             ========================================================= */}
 
             {selectedImage && (
-
                 <div
                     className="gallery-lightbox"
                     onClick={closeLightbox}
                     role="dialog"
                     aria-modal="true"
-                    aria-label="Aperçu de la photo"
+                    aria-label={t(
+                        "gallery.lightbox.preview"
+                    )}
                 >
 
-
-                    {/* CLOSE */}
-
+                    {/* FERMER */}
                     <button
                         type="button"
                         className="gallery-lightbox__close"
                         onClick={closeLightbox}
-                        aria-label="Fermer la photo"
+                        aria-label={t(
+                            "gallery.lightbox.close"
+                        )}
                     >
                         ×
                     </button>
 
-
                     {/* IMAGE */}
-
                     <img
                         src={selectedImage.src}
                         alt={selectedImage.caption}
-                        onClick={(event) => {
-                            event.stopPropagation();
-                        }}
+                        onClick={(event) =>
+                            event.stopPropagation()
+                        }
                     />
 
-
-                    {/* CAPTION */}
-
+                    {/* LÉGENDE */}
                     <div
                         className="gallery-lightbox__caption"
-                        onClick={(event) => {
-                            event.stopPropagation();
-                        }}
+                        onClick={(event) =>
+                            event.stopPropagation()
+                        }
                     >
-
                         <span>
                             {selectedImage.title}
                         </span>
@@ -463,15 +512,19 @@ export default function Gallery() {
                         </h3>
 
                         <small>
-                            Photo {selectedImage.index + 1}
+                            {t(
+                                "gallery.lightbox.photo",
+                                {
+                                    number:
+                                        selectedImage.index +
+                                        1,
+                                }
+                            )}
                         </small>
-
                     </div>
-
                 </div>
-
             )}
-
         </main>
     );
 }
+ 

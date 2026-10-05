@@ -1,4 +1,5 @@
 import { Link, usePage } from "@inertiajs/react";
+import { useTranslation } from "react-i18next";
 import {
     FaPhone,
     FaEnvelope,
@@ -16,10 +17,10 @@ import "./css/Header.css";
 const MOBILE_BREAKPOINT = 991;
 
 const NAV_ITEMS = [
-    { href: "/", label: "Accueil" },
-    { href: "/reservation", label: "Reservation" },
-    { href: "/rooms", label: "Appartements" },
-    { href: "/restauration", label: "Restauration" },
+    { href: "/", key: "nav.home" },
+    { href: "/reservation", key: "nav.booking" },
+    { href: "/rooms", key: "nav.rooms" },
+    { href: "/restauration", key: "nav.dining" },
 ];
 
 const CONTACT_LINKS = [
@@ -33,11 +34,11 @@ const CONTACT_LINKS = [
         external: true,
     },
     { href: "tel:+2250500326868", icon: FaPhone, label: "+225 05 00 32 68 68" },
-    { href: "mailto:info@residencenehemie.com", icon: FaEnvelope, label: "Envoyer un e-mail" },
+    { href: "mailto:info@residencenehemie.com", icon: FaEnvelope, labelKey: "contact.email" },
     {
         href: "https://www.google.com/maps/dir/?api=1&destination=5.389184494589828,-3.9155399255394325",
         icon: FaLocationDot,
-        label: "Voir l'Itinéraire",
+        labelKey: "contact.directions",
         external: true,
     },
 ];
@@ -49,6 +50,10 @@ const BookmarkIcon = () => (
 );
 
 export default function Header() {
+    const { t, i18n } = useTranslation();
+    const isFr = i18n.language.startsWith("fr");
+    const toggleLang = () => i18n.changeLanguage(isFr ? "en" : "fr");
+
     const { url } = usePage();
     const currentPath = url.split("?")[0].split("#")[0];
 
@@ -128,7 +133,7 @@ export default function Header() {
                     <div className="header-logo-column">
                         <div className="knsl-logo-frame">
                             <Link href="/">
-                                <img src="/img/logo.png" alt="Villa Hortensia Saly" />
+                                <img src="/img/logo.png" alt={t("header.logoAlt")} />
                             </Link>
                         </div>
                     </div>
@@ -136,7 +141,7 @@ export default function Header() {
                     {/* Menu desktop */}
                     <div className="header-menu-column">
                         <div className="knsl-menu">
-                            <nav className="top-menu-nav" aria-label="Navigation principale">
+                            <nav className="top-menu-nav" aria-label={t("header.mainNav")}>
                                 <ul className="top-menu-nav-inner">
                                     {NAV_ITEMS.map((item) => (
                                         <li className="menu-item" key={item.href}>
@@ -145,13 +150,13 @@ export default function Header() {
                                                 className={isActive(item.href) ? "active" : undefined}
                                                 aria-current={isActive(item.href) ? "page" : undefined}
                                             >
-                                                {item.label}
+                                                {t(item.key)}
                                             </Link>
                                         </li>
                                     ))}
                                     <li className="menu-item">
                                         <button type="button" onClick={openContact}>
-                                            Contactez-nous
+                                            {t("nav.contact")}
                                         </button>
                                     </li>
                                 </ul>
@@ -159,19 +164,28 @@ export default function Header() {
                         </div>
                     </div>
 
-                    {/* Réservation + hamburger */}
+                    {/* Langue + réservation + hamburger */}
                     <div className="header-action-column">
                         <div className="header-right">
+                            <button
+                                type="button"
+                                className="lang-switch"
+                                onClick={toggleLang}
+                                aria-label={t("header.switchLang")}
+                            >
+                                {isFr ? "EN" : "FR"}
+                            </button>
+
                             <Link href="/reservation" className="knsl-btn">
                                 <BookmarkIcon />
-                                <span className="knsl-btn-label">Réserver</span>
+                                <span className="knsl-btn-label">{t("header.book")}</span>
                             </Link>
 
                             <button
                                 ref={menuButtonRef}
                                 type="button"
                                 className="knsl-menu-btn"
-                                aria-label="Ouvrir le menu"
+                                aria-label={t("header.openMenu")}
                                 aria-expanded={menuOpen}
                                 aria-controls="mobile-sidebar"
                                 onClick={openMenu}
@@ -196,16 +210,16 @@ export default function Header() {
             <aside
                 id="mobile-sidebar"
                 className={`mobile-sidebar left-sidebar ${menuOpen ? "open" : ""}`}
-                aria-label="Menu"
+                aria-label={t("header.menu")}
                 aria-hidden={!menuOpen}
             >
                 <div className="mobile-sidebar-head">
-                    <span className="mobile-sidebar-title">Menu</span>
+                    <span className="mobile-sidebar-title">{t("header.menu")}</span>
                     <button
                         ref={closeButtonRef}
                         type="button"
                         className="mobile-sidebar-close"
-                        aria-label="Fermer le menu"
+                        aria-label={t("header.closeMenu")}
                         onClick={closeMenu}
                     >
                         <span></span>
@@ -213,7 +227,7 @@ export default function Header() {
                     </button>
                 </div>
 
-                <nav className="mobile-sidebar-nav" aria-label="Navigation principale">
+                <nav className="mobile-sidebar-nav" aria-label={t("header.mainNav")}>
                     <ul>
                         {NAV_ITEMS.map((item) => (
                             <li key={item.href}>
@@ -223,7 +237,7 @@ export default function Header() {
                                     aria-current={isActive(item.href) ? "page" : undefined}
                                     onClick={closeMenu}
                                 >
-                                    {item.label}
+                                    {t(item.key)}
                                 </Link>
                             </li>
                         ))}
@@ -235,16 +249,25 @@ export default function Header() {
                                     openContact();
                                 }}
                             >
-                                CONTACTEZ-NOUS
+                                {t("nav.contact")}
                             </button>
                         </li>
                     </ul>
                 </nav>
 
                 <div className="mobile-sidebar-footer">
+                    <button
+                        type="button"
+                        className="lang-switch-mobile"
+                        onClick={toggleLang}
+                        aria-label={t("header.switchLang")}
+                    >
+                        {isFr ? "English" : "Français"}
+                    </button>
+
                     <Link href="/reservation" className="knsl-btn" onClick={closeMenu}>
                         <BookmarkIcon />
-                        <span>Réserver</span>
+                        <span>{t("header.book")}</span>
                     </Link>
                 </div>
             </aside>
@@ -253,15 +276,15 @@ export default function Header() {
             <aside
                 className={`contactsidebar ${contactOpen ? "active" : ""}`}
                 id="contactsidebar"
-                aria-label="Contact"
+                aria-label={t("contact.panelLabel")}
                 aria-hidden={!contactOpen}
             >
                 <div className="contactsidebar_header">
-                    <h3>Suivez-nous sur les réseaux sociaux</h3>
+                    <h3>{t("contact.title")}</h3>
                     <button
                         type="button"
                         className="contactsidebar_close_btn"
-                        aria-label="Fermer le panneau de contact"
+                        aria-label={t("contact.close")}
                         onClick={closeContact}
                     >
                         <FaXmark aria-hidden="true" />
@@ -269,10 +292,10 @@ export default function Header() {
                 </div>
 
                 <div className="contactsidebar_content">
-                    <p>Où que vous soyez, nos conseillers seront ravis de vous aider.</p>
+                    <p>{t("contact.text")}</p>
                     <ul>
-                        {CONTACT_LINKS.map(({ href, icon: Icon, label, external }) => (
-                            <li key={label}>
+                        {CONTACT_LINKS.map(({ href, icon: Icon, label, labelKey, external }) => (
+                            <li key={href}>
                                 <a
                                     href={href}
                                     className="contact-link"
@@ -281,7 +304,7 @@ export default function Header() {
                                         : {})}
                                 >
                                     <Icon aria-hidden="true" />
-                                    <span>{label}</span>
+                                    <span>{labelKey ? t(labelKey) : label}</span>
                                 </a>
                             </li>
                         ))}

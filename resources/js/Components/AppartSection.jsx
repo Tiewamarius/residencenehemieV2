@@ -1,64 +1,53 @@
-import { Link } from '@inertiajs/react';
-import './css/AppartSection.css';
+
+import { Link } from "@inertiajs/react";
+import { useTranslation } from "react-i18next";
+import "./css/AppartSection.css";
+
+/* ---------------------------------------------------------------------------
+   RÉSIDENCES
+
+   Les textes (nom, catégorie, atouts, description) sont dans les fichiers
+   de traduction sous appart.items.<key>.
+
+   La clé "key" est également utilisée par Gallery.jsx pour ouvrir directement
+   le bon appartement dans la galerie.
+
+   Les adresses et prix restent ici.
+--------------------------------------------------------------------------- */
 
 const residences = [
     {
         id: 1,
-        name: 'Appartement Signature',
-        category: 'Appartement 2 pièces',
-        //  // location: 'Bingerville',
-        address: 'Rue Lambert Feh-Kesse, Bingerville',
+        key: "signature",
+        address: "Rue Lambert Feh-Kesse, Bingerville",
         price: 35000,
-        image: '/img/Hero-Gallery/RN8_Salon.jpg',
-        features: [
-            'Appartement entièrement meublé',
-            'Climatisation et Wi-Fi',
-            'Confort et tranquillité',
-        ],
-        description:
-            'Un espace élégant et chaleureux, pensé pour vous offrir un séjour confortable, que vous soyez en déplacement professionnel ou en escapade.',
-        booking: '/reservation',
-        details: '/residences/1',
+        image: "/img/Hero-Gallery/RN8_Salon.jpg",
+        booking: "/reservation",
+        details: "/rooms?apartment=signature",
     },
     {
         id: 2,
-        name: 'Résidence Élégance',
-        category: 'Appartement 3 pièces',
-         // location: 'Bingerville',
-        address: 'Résidence Néhémie, Bingerville',
+        key: "elegance",
+        address: "Résidence Néhémie, Bingerville",
         price: 45000,
-        image: '/img/Hero-Gallery/RN8_Salon.jpg',
-        features: [
-            'Deux chambres confortables',
-            'Espaces de vie aménagés',
-            'Parking et Wi-Fi',
-        ],
-        description:
-            'Un appartement spacieux et soigneusement aménagé, idéal pour les familles, les séjours professionnels et les moments de détente.',
-        booking: '/reservation',
-        details: '/residences/2',
+        image: "/img/Hero-Gallery/RN8_Salon.jpg",
+        booking: "/reservation",
+        details: "/rooms?apartment=elegance",
     },
     {
         id: 3,
-        name: 'Résidence Prestige',
-        category: 'Appartement 3 pièces',
-         // location: 'Bingerville',
-        address: 'Rue Lambert Feh-Kesse, Bingerville',
+        key: "prestige",
+        address: "Rue Lambert Feh-Kesse, Bingerville",
         price: 55000,
-        image: '/img/Hero-Gallery/RN8_Salon.jpg',
-        features: [
-            'Aménagement haut de gamme',
-            'Confort pour vos séjours',
-            'Environnement paisible',
-        ],
-        description:
-            'Profitez d’un cadre accueillant associant espace, confort et sérénité pour une expérience résidentielle agréable.',
-        booking: '/reservation',
-        details: '/residences/3',
+        image: "/img/Hero-Gallery/RN8_Salon.jpg",
+        booking: "/reservation",
+        details: "/rooms?apartment=prestige",
     },
 ];
 
-/* Icônes SVG : les symboles ⌖ et ✓ s'affichent mal sur certains téléphones */
+/* ---------------------------------------------------------------------------
+   ICÔNE LOCALISATION
+--------------------------------------------------------------------------- */
 
 const PinIcon = () => (
     <svg
@@ -82,6 +71,10 @@ const PinIcon = () => (
     </svg>
 );
 
+/* ---------------------------------------------------------------------------
+   ICÔNE CHECK
+--------------------------------------------------------------------------- */
+
 const CheckIcon = () => (
     <span className="appart-check" aria-hidden="true">
         <svg viewBox="0 0 24 24" fill="none">
@@ -96,179 +89,194 @@ const CheckIcon = () => (
     </span>
 );
 
+/* ---------------------------------------------------------------------------
+   COMPOSANT
+--------------------------------------------------------------------------- */
+
 export default function AppartSection() {
+    const { t, i18n } = useTranslation();
+
+    /*
+     * Français :
+     * 35 000 FCFA
+     *
+     * Anglais :
+     * 35,000 FCFA
+     */
+    const numberLocale = i18n.language?.startsWith("en")
+        ? "en-US"
+        : "fr-FR";
+
     return (
         <section className="appart-section" id="locations">
-
             <div className="appart-container">
 
-                {/* En-tête de section */}
-
+                {/* =========================================================
+                    EN-TÊTE
+                ========================================================= */}
                 <div className="appart-header">
-
                     <span className="appart-subtitle">
-                        Nos résidences
+                        {t("appart.subtitle")}
                     </span>
 
                     <h2 className="appart-title">
-                        Des espaces de vie.
+                        {t("appart.title1")}
                         <br />
-                        <span>Une expérience d'exception.</span>
+                        <span>{t("appart.title2")}</span>
                     </h2>
-{/* 
-                    <p className="appart-lead">
-                        Découvrez les appartements meublés de la Résidence
-                        Néhémie, conçus pour allier confort, élégance et
-                        tranquillité. Que ce soit pour une nuit ou un
-                        séjour prolongé, profitez d'un cadre où vous
-                        vous sentirez véritablement chez vous.
-                    </p> */}
-
                 </div>
 
-                {/* Grille des appartements */}
-
+                {/* =========================================================
+                    GRILLE DES APPARTEMENTS
+                ========================================================= */}
                 <div className="appart-grid">
+                    {residences.map((residence, index) => {
+                        const base = `appart.items.${residence.key}`;
 
-                    {residences.map((residence, index) => (
+                        const features = t(`${base}.features`, {
+                            returnObjects: true,
+                        });
 
-                        <article
-                            className="appart-card"
-                            key={residence.id}
-                            style={{ '--card-index': index }}
-                        >
-
-                            {/* Image de fond + voile */}
-
-                            <div
-                                className="appart-card-bg"
+                        return (
+                            <article
+                                className="appart-card"
+                                key={residence.id}
                                 style={{
-                                    backgroundImage: `url("${residence.image}")`,
+                                    "--card-index": index,
                                 }}
-                                aria-hidden="true"
-                            />
+                            >
+                                {/* Image de fond */}
+                                <div
+                                    className="appart-card-bg"
+                                    style={{
+                                        backgroundImage: `url("${residence.image}")`,
+                                    }}
+                                    aria-hidden="true"
+                                />
 
-                            <div className="appart-card-overlay" aria-hidden="true" />
+                                {/* Voile */}
+                                <div
+                                    className="appart-card-overlay"
+                                    aria-hidden="true"
+                                />
 
-                            {/* Quartier + prix */}
+                                {/* =================================================
+                                    PRIX
+                                ================================================= */}
+                                <div className="appart-card-top">
+                                    <div className="appart-price"> 
 
-                            <div className="appart-card-top">
+                                        <strong>
+                                            {residence.price.toLocaleString(
+                                                numberLocale
+                                            )}
+                                            {"\u00A0"}FCFA
+                                        </strong>
 
-                                <span className="appart-tag">
-                                    {residence.location}
-                                </span>
-
-                                <div className="appart-price">
-
-                                    <span className="appart-price-from">
-                                        {/* À partir de */}
-                                    </span>
-
-                                    <strong>
-                                        {`${residence.price.toLocaleString('fr-FR')}\u00A0FCFA`}
-                                    </strong>
-
-                                    <small>/ nuit</small>
-
+                                        <small>
+                                            {t("appart.perNight")}
+                                        </small>
+                                    </div>
                                 </div>
 
-                            </div>
+                                {/* =================================================
+                                    CONTENU
+                                ================================================= */}
+                                <div className="appart-card-content">
+                                    <div className="appart-card-heading">
+                                        <span className="appart-category">
+                                            {t(`${base}.category`)}
+                                        </span>
 
-                            {/* Contenu de la carte */}
+                                        <h3>
+                                            {t(`${base}.name`)}
+                                        </h3>
 
-                            <div className="appart-card-content">
+                                        <p className="appart-address">
+                                            <PinIcon />
 
-                                <div className="appart-card-heading">
-
-                                    <span className="appart-category">
-                                        {residence.category}
-                                    </span>
-
-                                    <h3>
-                                        {residence.name}
-                                    </h3>
-
-                                    <p className="appart-address">
-                                        <PinIcon />
-                                        <span>{residence.address}</span>
-                                    </p>
-
-                                </div>
-
-                                {/* Détails : au survol sur desktop, toujours visibles ailleurs */}
-
-                                <div className="appart-hover-content">
-
-                                    <div className="appart-hover-inner">
-
-                                        <ul className="appart-features">
-                                            {residence.features.map((feature) => (
-                                                <li
-                                                    className="appart-feature"
-                                                    key={feature}
-                                                >
-                                                    <CheckIcon />
-                                                    <span>{feature}</span>
-                                                </li>
-                                            ))}
-                                        </ul>
-
-                                        <p className="appart-description">
-                                            {residence.description}
+                                            <span>
+                                                {residence.address}
+                                            </span>
                                         </p>
-
-                                        <div className="appart-actions">
-
-                                            <Link
-                                                href={residence.booking}
-                                                className="appart-btn appart-btn-primary"
-                                            >
-                                                Réserver
-                                                <span aria-hidden="true">↗</span>
-                                            </Link>
-
-                                            <Link
-                                                href={residence.details}
-                                                className="appart-btn appart-btn-ghost"
-                                            >
-                                                Découvrir
-                                                <span aria-hidden="true">→</span>
-                                            </Link>
-
-                                        </div>
-
                                     </div>
 
+                                    {/* =================================================
+                                        CONTENU AU SURVOL
+                                        Visible au survol desktop et selon le CSS
+                                        sur mobile/tablette.
+                                    ================================================= */}
+                                    <div className="appart-hover-content">
+                                        <div className="appart-hover-inner">
+
+                                            {/* Atouts */}
+                                            <ul className="appart-features">
+                                                {Array.isArray(features) &&
+                                                    features.map(
+                                                        (feature) => (
+                                                            <li
+                                                                className="appart-feature"
+                                                                key={feature}
+                                                            >
+                                                                <CheckIcon />
+
+                                                                <span>
+                                                                    {feature}
+                                                                </span>
+                                                            </li>
+                                                        )
+                                                    )}
+                                            </ul>
+
+                                            {/* Description */}
+                                            <p className="appart-description">
+                                                {t(`${base}.description`)}
+                                            </p>
+
+                                            {/* Actions */}
+                                            <div className="appart-actions">
+
+                                                {/* Réserver */}
+                                                <Link
+                                                    href={
+                                                        residence.booking
+                                                    }
+                                                    className="appart-btn appart-btn-primary"
+                                                >
+                                                    {t("appart.book")}
+
+                                                    <span aria-hidden="true">
+                                                        ↗
+                                                    </span>
+                                                </Link>
+
+                                                {/* Galerie de l'appartement
+                                                    correspondant */}
+                                                <Link
+                                                    href={
+                                                        residence.details
+                                                    }
+                                                    className="appart-btn appart-btn-ghost"
+                                                >
+                                                    {t("appart.discover")}
+
+                                                    <span aria-hidden="true">
+                                                        →
+                                                    </span>
+                                                </Link>
+
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-
-                            </div>
-
-                        </article>
-
-                    ))}
-
+                            </article>
+                        );
+                    })}
                 </div>
 
-                {/* Appel à l'action */}
-
-                <div className="appart-bottom">
-
-                    {/* <p>
-                        Votre confort mérite un cadre exceptionnel.
-                    </p> */}
-
-                    {/* <Link
-                        href="/reservation"
-                        className="appart-discover-link"
-                    >
-                        Découvrir nos appartements
-                        <span aria-hidden="true">→</span>
-                    </Link> */}
-
-                </div>
-
+                {/* Espace inférieur */}
+                <div className="appart-bottom"></div>
             </div>
-
         </section>
     );
 }

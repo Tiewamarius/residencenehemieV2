@@ -1,45 +1,33 @@
 import { Link } from '@inertiajs/react';
+import { useTranslation } from 'react-i18next';
 import './css/HomeSection.css';
 
 export default function AboutVilla() {
+    const { t } = useTranslation();
+
     return (
         <section className="about-villa-section">
-
             <div className="about-villa-card">
-
                 {/* Image */}
                 <div className="about-villa-image">
                     <img
                         src="/img/Hero-Gallery/ESPACE COMMUN 2.jpg"
-                        alt="Découverte de la Résidence"
+                        alt={t('about.imageAlt')}
                         loading="lazy"
                     />
                 </div>
 
                 {/* Content */}
                 <div className="about-villa-content">
+                    <span className="about-villa-label">{t('about.label')}</span>
 
-                    <span className="about-villa-label">
-                        BIENVENUE CHEZ NOUS
-                    </span>
+                    <h2>{t('about.title')}</h2>
 
-                    <h2>
-                        La Résidence Néhémie
-                    </h2>
+                    <p>{t('about.text1')}</p>
 
-                    <p>
-                        La Résidence Néhémie propose un cadre agréable pour
-                        vos séjours en Côte d'Ivoire.
-                    </p>
-
-                    <p>
-                        Profitez d'un hébergement confortable,
-                        d'un parking privé gratuit et d'un
-                        environnement propice à la détente.
-                    </p>
+                    <p>{t('about.text2')}</p>
 
                     <div className="about-villa-details">
-
                         <div className="about-villa-detail">
                             <span className="about-villa-detail-icon" aria-hidden="true">
                                 <svg viewBox="0 0 24 24" fill="none">
@@ -48,17 +36,11 @@ export default function AboutVilla() {
                                         stroke="currentColor"
                                         strokeWidth="1.7"
                                     />
-                                    <circle
-                                        cx="12"
-                                        cy="9.5"
-                                        r="2.3"
-                                        stroke="currentColor"
-                                        strokeWidth="1.7"
-                                    />
+                                    <circle cx="12" cy="9.5" r="2.3" stroke="currentColor" strokeWidth="1.7" />
                                 </svg>
                             </span>
 
-                            <span>Abidjan, Bingerville - Féh Kessé</span>
+                            <span>{t('about.location')}</span>
                         </div>
 
                         <div className="about-villa-detail">
@@ -70,31 +52,20 @@ export default function AboutVilla() {
                                         strokeWidth="1.7"
                                         strokeLinejoin="round"
                                     />
-                                    <path
-                                        d="M9 20V13H15V20"
-                                        stroke="currentColor"
-                                        strokeWidth="1.7"
-                                    />
+                                    <path d="M9 20V13H15V20" stroke="currentColor" strokeWidth="1.7" />
                                 </svg>
                             </span>
 
-                            <span>Hébergement confortable</span>
+                            <span>{t('about.lodging')}</span>
                         </div>
-
                     </div>
 
-                    <Link
-                        href="/reservation"
-                        className="about-villa-button"
-                    >
-                        Découvrir nos appartements
+                    <Link href="/rooms" className="about-villa-button">
+                        {t('about.button')}
                         <span aria-hidden="true">→</span>
                     </Link>
-
                 </div>
-
             </div>
-
         </section>
     );
 }

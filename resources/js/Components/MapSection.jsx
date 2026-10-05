@@ -1,4 +1,3 @@
-
 import {
     FaMapMarkerAlt,
     FaPhoneAlt,
@@ -6,13 +5,13 @@ import {
     FaLocationArrow,
 } from "react-icons/fa";
 
+import { useTranslation } from "react-i18next";
 import "./css/SectionMap.css";
 
 /*
 |--------------------------------------------------------------------------
 | INFORMATIONS DE LA RÉSIDENCE
 |--------------------------------------------------------------------------
-| Remplace l'adresse par l'adresse exacte de l'établissement.
 */
 
 const LOCATION = {
@@ -22,10 +21,6 @@ const LOCATION = {
     email: "info@residencenehemie.com",
 };
 
-const mapQuery = encodeURIComponent(
-    `${LOCATION.name}, ${LOCATION.address}`
-);
-
 const mapEmbedUrl =
     "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3972.1821716363106!2d-3.9155399255394325!3d5.389184494589828!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xfc193d6ba52ab41%3A0xa69fdec5c7555353!2zUsOpc2lkZW5jZSBOw6low6ltaWU!5e0!3m2!1sfr!2sci!4v1757603653750!5m2!1sfr!2sci";
 
@@ -33,36 +28,31 @@ const directionsUrl =
     "https://www.google.com/maps/dir/?api=1&destination=5.389184494589828,-3.9155399255394325";
 
 export default function MapSection() {
+    const { t } = useTranslation();
+
     return (
         <section className="map-section" id="localisation">
-
             <div className="map-container">
 
                 {/* En-tête */}
-
                 <div className="map-header">
                     <span className="map-subtitle">
-                        Notre emplacement
+                        {t("map.subtitle")}
                     </span>
 
                     <h2 className="map-title">
-                        Trouvez-nous facilement
+                        {t("map.title")}
                     </h2>
 
                     <p className="map-description">
-                        La Résidence Néhémie vous accueille dans un cadre
-                        agréable, idéalement situé pour vos séjours,
-                        vos déplacements professionnels et vos moments
-                        de détente.
+                        {t("map.description")}
                     </p>
                 </div>
 
                 {/* Carte et informations */}
-
                 <div className="map-card">
 
                     {/* Informations */}
-
                     <div className="map-info">
 
                         <div className="map-info-item">
@@ -71,7 +61,6 @@ export default function MapSection() {
                             </div>
 
                             <div className="map-info-content">
-                                {/* <h3>Adresse</h3> */}
                                 <p>{LOCATION.address}</p>
                             </div>
                         </div>
@@ -82,8 +71,9 @@ export default function MapSection() {
                             </div>
 
                             <div className="map-info-content">
-                                {/* <h3>Téléphone</h3> */}
-                                <a href={`tel:${LOCATION.phone.replace(/\s/g, "")}`}>
+                                <a
+                                    href={`tel:${LOCATION.phone.replace(/\s/g, "")}`}
+                                >
                                     {LOCATION.phone}
                                 </a>
                             </div>
@@ -95,7 +85,6 @@ export default function MapSection() {
                             </div>
 
                             <div className="map-info-content">
-                                {/* <h3>Email</h3> */}
                                 <a href={`mailto:${LOCATION.email}`}>
                                     {LOCATION.email}
                                 </a>
@@ -109,20 +98,18 @@ export default function MapSection() {
                             className="map-directions-btn"
                         >
                             <FaLocationArrow />
-                            Voir sur Google Maps
+                            {t("map.directions")}
                         </a>
 
                         <div className="map-signature">
-                            À très bientôt !
+                            {t("map.signature")}
                         </div>
-
                     </div>
 
                     {/* Google Maps */}
-
                     <div className="map-frame">
                         <iframe
-                            title="Localisation de la Résidence Néhémie"
+                            title={t("map.iframeTitle")}
                             src={mapEmbedUrl}
                             width="100%"
                             height="100%"
@@ -134,7 +121,6 @@ export default function MapSection() {
                     </div>
 
                 </div>
-
             </div>
         </section>
     );

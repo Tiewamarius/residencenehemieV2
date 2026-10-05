@@ -117,13 +117,13 @@
 
     padding: 38px 30px;
 
-    color: #ffffff;
+    color: black;
 
     background:
         linear-gradient(
             155deg,
             rgba(180, 229, 239, 0.91),
-            rgba(231, 201, 210, 0.91)
+            rgba(180, 229, 239, 0.91)
         ),
         url('/img/Hero-Gallery/ESPACE%20COMMUN%202.jpg')
         center / cover no-repeat;
@@ -149,7 +149,7 @@
 
     border-radius: 50%;
 
-    background: var(--map-primary);
+    background: #0034DE;
     color: #ffffff;
     font-size: 15px;
 }
@@ -170,9 +170,11 @@
 .map-info-content a {
     display: block;
     margin: 0;
-
-    color: rgba(255, 255, 255, 0.82);
-    font-size: 14px;
+    color: #3b3e52;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    
     line-height: 1.7;
     text-decoration: none;
     overflow-wrap: anywhere;
@@ -198,7 +200,7 @@
 
     border-radius: 50px;
 
-    background: var(--map-primary);
+    background: #0034DE;
     color: #ffffff;
 
     font-size: 13px;
@@ -224,11 +226,11 @@
 .map-signature {
     margin-top: 27px;
 
-    color: #ffffff;
+    color: #3b3e52;
     font-family: 'Brush Script MT', cursive;
     font-size: 31px;
     font-style: italic;
-    font-weight: 400;
+    font-weight: 500;
     transform: rotate(-4deg);
 }
 
@@ -328,7 +330,7 @@
     }
 
     .map-directions-btn {
-        width: 100%;
+        width: 80%;
         margin-top: 22px;
     }
 

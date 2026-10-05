@@ -134,8 +134,8 @@
     border: 0;
     cursor: pointer;
     font-family: inherit;
-    letter-spacing: inherit;
-    text-transform: inherit;
+    letter-spacing: normal;
+    text-transform: none;
 }
 
 .site-header .top-menu-nav-inner .menu-item a,
@@ -148,6 +148,7 @@
     color: #ffffff;
     font-size: 15px;
     font-weight: 500;
+    text-transform: none;
     white-space: nowrap;
     text-decoration: none;
 
@@ -661,7 +662,7 @@
 
     .mobile-sidebar-footer .knsl-btn {
         display: flex;
-        width: 100%;
+        /* width: 100%; */
     }
 }
 
@@ -750,4 +751,113 @@
 
 .site-header .top-menu-nav-inner .menu-item a.active::after {
     width: 100%;
+}
+
+/* =========================================================
+   BOUTON DE LANGUE
+========================================================= */
+
+/* Desktop : dans le header */
+.site-header .lang-switch {
+    min-width: 40px;
+    height: 40px;
+    padding: 0 10px;
+
+    border: 0.5px solid currentColor;
+    border-radius: 10px;
+    background: transparent;
+    color: #ffffff;
+
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+
+    transition: color 0.3s ease;
+}
+
+.site-header.scrolled .lang-switch {
+    color: #222222;
+}
+
+.site-header .lang-switch:hover,
+.site-header .lang-switch:focus-visible {
+    color: var(--accent);
+}
+
+.site-header .lang-switch:focus-visible,
+.mobile-sidebar .lang-switch-mobile:focus-visible {
+    outline: 0.5px solid var(--accent);
+    outline-offset: 1px;
+}
+
+/* Mobile : le bouton du header est masqué, celui du sidebar prend le relais */
+@media (max-width: 991px) {
+    .mobile-sidebar-nav a,
+.mobile-sidebar-nav button {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 18px 24px;
+
+    color: #222222;
+    font-size: 17px;
+    font-weight: 500;
+    text-align: left;
+    text-transform: none;
+    text-decoration: none;
+
+    background: transparent;
+    border: none;
+    cursor: pointer;
+
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+    .mobile-sidebar-nav a,
+.mobile-sidebar-nav button {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 18px 24px;
+
+    color: #222222;
+    font-size: 17px;
+    font-weight: 500;
+    text-align: left;
+    text-transform: none;
+    text-decoration: none;
+
+    background: transparent;
+    border: none;
+    cursor: pointer;
+
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+    .site-header .lang-switch {
+        display: none;
+    }
+
+    .mobile-sidebar .lang-switch-mobile {
+        display: block;
+        width: 100%;
+        min-height: 44px;
+        margin-bottom: 12px;
+
+        border: 2px solid rgba(0, 0, 0, 0.15);
+        border-radius: 10px;
+        background: transparent;
+        color: #222222;
+
+        font-family: inherit;
+        font-size: 15px;
+        font-weight: 600;
+        cursor: pointer;
+
+        transition: color 0.3s ease, border-color 0.3s ease;
+    }
+
+    .mobile-sidebar .lang-switch-mobile:hover {
+        color: var(--accent);
+        border-color: var(--accent);
+    }
 }
