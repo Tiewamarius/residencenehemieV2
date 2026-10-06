@@ -2,7 +2,7 @@
 "nav": {
 "home": "Accueil",
 "booking": "Réservation",
-"rooms": "Galleries",
+"rooms": "Galeries",
 "dining": "Restauration",
 "contact": "Contactez-nous"
 },
@@ -62,6 +62,7 @@
 },
 
 "appart": {
+    "from": "À partir de",
     "subtitle": "Nos appartements",
     "title1": "Confort et élégance.",
     "title2": "Choisissez votre séjour.",

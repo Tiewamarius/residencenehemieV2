@@ -10,7 +10,7 @@ export default function MainLayout({ children }) {
 
             <main className="knsl-main">
                 {/* WhatsApp */}
-                <ChatWidget />
+                {/* <ChatWidget /> */}
                 {children}
             </main>
             <MapSection />

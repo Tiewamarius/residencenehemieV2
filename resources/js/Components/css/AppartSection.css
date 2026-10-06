@@ -459,9 +459,9 @@
 
 @container appart (max-width: 400px) {
 
-    .appart-price-from {
+    /* .appart-price-from {
         display: none;
-    }
+    } */
 
     .appart-btn {
         flex: 1 1 0;
@@ -702,4 +702,30 @@
     .appart-btn:hover {
         transform: none;
     }
+}
+.appart-price {
+    display: flex;
+    align-items: baseline;
+    justify-content: flex-end;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.appart-price-from {
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    opacity: 0.85;
+}
+
+.appart-price strong {
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+}
+
+.appart-price small {
+    font-size: 11px;
+    font-weight: 400;
+    opacity: 0.75;
 }

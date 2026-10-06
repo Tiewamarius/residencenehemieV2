@@ -11,7 +11,7 @@ export default function AboutVilla() {
                 {/* Image */}
                 <div className="about-villa-image">
                     <img
-                        src="/img/Hero-Gallery/ESPACE COMMUN 2.jpg"
+                        src="/img/Gallery/Appart3/Salon/SALON 1.jpg"
                         alt={t('about.imageAlt')}
                         loading="lazy"
                     />

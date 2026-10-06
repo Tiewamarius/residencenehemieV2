@@ -20,8 +20,8 @@ const residences = [
         id: 1,
         key: "signature",
         address: "Rue Lambert Feh-Kesse, Bingerville",
-        price: 35000,
-        image: "/img/Gallery/Appart1/RN2_Salon 2.jpg",
+        price: 30000,
+        image: "/img/Gallery/Appart1/Salon 02.jpg",
         booking: "/reservation",
         details: "/rooms?apartment=signature",
     },
@@ -29,8 +29,8 @@ const residences = [
         id: 2,
         key: "elegance",
         address: "Résidence Néhémie, Bingerville",
-        price: 45000,
-        image: "/img/Gallery/Appart2/RN4-Salon.jpg",
+        price: 40000,
+        image: "/img/Gallery/Appart2/Salon 03.jpg",
         booking: "/reservation",
         details: "/rooms?apartment=elegance",
     },
@@ -38,8 +38,8 @@ const residences = [
         id: 3,
         key: "prestige",
         address: "Rue Lambert Feh-Kesse, Bingerville",
-        price: 55000,
-        image: "/img/Hero-Gallery/RN8_Salon.jpg",
+        price: 50000,
+        image: "/img/Gallery/Appart3/Salon/SALON.jpg",
         booking: "/reservation",
         details: "/rooms?apartment=prestige",
     },
@@ -164,7 +164,10 @@ export default function AppartSection() {
                                     PRIX
                                 ================================================= */}
                                 <div className="appart-card-top">
-                                    <div className="appart-price"> 
+                                    <div className="appart-price">
+                                        <span className="appart-price-from">
+                                            {t("appart.from")}
+                                        </span>
 
                                         <strong>
                                             {residence.price.toLocaleString(

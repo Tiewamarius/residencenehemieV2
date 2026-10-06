@@ -12,27 +12,20 @@ import "./css/Gallery.css";
 const heroMedia = [
     {
         type: "image",
-        src: "/img/Hero-gallery/RN8_Salon.jpg",
+        src: "/img/Hero-Gallery/ESPACE COMMUN 2.jpg",
         altKey: "heroMedia.residence",
     },
     {
         type: "image",
-        src: "/img/Hero-gallery/RN8_Salon.jpg",
+        src: "/img/Hero-Gallery/ESPACE COMMUN 2.jpg",
         altKey: "heroMedia.apartment",
     },
     {
         type: "image",
-        src: "/img/Hero-gallery/RN8_Salon.jpg",
+        src: "/img/Hero-Gallery/ESPACE COMMUN 2.jpg",
         altKey: "heroMedia.outdoor",
-    },
-    {
-        type: "video",
-        src: "/videos/gallery-hero/hero-1.mp4",
-    },
-    {
-        type: "video",
-        src: "/videos/gallery-hero/hero-2.mp4",
-    },
+    }
+    , 
 ];
 
 const apartments = [
@@ -42,17 +35,74 @@ const apartments = [
         locationKey: "bingerville",
 
         images: [
+            // Salon
+            {
+                src: "/img/Gallery/Appart1/Salon 02.jpg",
+                captionKey: "Salon",
+            },
             {
                 src: "/img/Gallery/Appart1/RN2_Salon 2.jpg",
                 captionKey: "Salon",
             },
             {
-                src: "/img/Gallery/Appart1/RN2_Chambre.jpg",
-                captionKey: "masterBedroom",
+                src: "/img/Gallery/Appart1/Salon 04.jpg",
+                captionKey: "Salon",
+            },
+
+            // Chambres
+            
+            {
+                src: "/img/Gallery/Appart1/Chambre 02.jpg",
+                captionKey: "Chambre",
             },
             {
-                src: "/img/Gallery/Appart1/RN2_Terrasse.jpg",
-                captionKey: "terrace",
+                src: "/img/Gallery/Appart1/Chambre 06.jpg",
+                captionKey: "Chambre",
+            },
+            {
+                src: "/img/Gallery/Appart1/Chambre 08.jpg",
+                captionKey: "Chambre",
+            },
+
+            // Cuisine
+            {
+                src: "/img/Gallery/Appart1/Cuisine.jpg",
+                captionKey: "Cuisine",
+            },
+            {
+                src: "/img/Gallery/Appart1/Cuisine 03.jpg",
+                captionKey: "Cuisine",
+            },
+            {
+                src: "/img/Gallery/Appart1/Cuisine 04.jpg",
+                captionKey: "Cuisine",
+            },
+            {
+                src: "/img/Gallery/Appart1/Cuisine 05.jpg",
+                captionKey: "Cuisine",
+            },
+            {
+                src: "/img/Gallery/Appart1/Chauffe eau.jpg",
+                captionKey: "Chauffe-eau",
+            },
+            {
+                src: "/img/Gallery/Appart1/Planche à repasser.jpg",
+                captionKey: "Planche à repasser",
+            },
+            
+
+            // Salle de bain
+            {
+                src: "/img/Gallery/Appart1/Salle e bain.jpg",
+                captionKey: "Salle de bain",
+            },
+            {
+                src: "/img/Gallery/Appart1/toilette.jpg",
+                captionKey: "Salle de bain",
+            },
+            {
+                src: "/img/Gallery/Appart1/Shattaf.jpg",
+                captionKey: "Salle de bain",
             },
         ],
     },
@@ -63,18 +113,62 @@ const apartments = [
         locationKey: "bingerville",
 
         images: [
+            // Salon
             {
-                src: "/img/Gallery/Appart2/RN4-Salon.jpg",
-                captionKey: "modernLivingRoom",
+                src: "/img/Gallery/Appart2/Salon 03.jpg",
+                captionKey: "Salon",
             },
             {
-                src: "/img/Gallery/Appart2/RN4-Chambre.jpg",
-                captionKey: "premiumBedroom",
+                src: "/img/Gallery/Appart2/Salon 02.jpg",
+                captionKey: "Salon",
             },
             {
-                src: "/img/Gallery/Appart2/RN4-Terrasse.jpg",
-                captionKey: "privateOutdoor",
+                src: "/img/Gallery/Appart2/Bureau.jpg",
+                captionKey: "Salon",
             },
+
+            // Cuisine
+            {
+                src: "/img/Gallery/Appart2/Cuisine.jpg",
+                captionKey: "Cuisine",
+            },
+            {
+                src: "/img/Gallery/Appart2/Cuisine 02.jpg",
+                captionKey: "Cuisine",
+            },
+            {
+                src: "/img/Gallery/Appart2/Cuisine lavabo.jpg",
+                captionKey: "Cuisine",
+            },
+
+            // Salle de bain
+            {
+                src: "/img/Gallery/Appart2/Salle de bain.jpg",
+                captionKey: "Salle de bain",
+            },
+            {
+                src: "/img/Gallery/Appart2/Toilette visiteur 2.jpg",
+                captionKey: "Toilette visiteur 2",
+            },
+            {
+                src: "/img/Gallery/Appart2/Salle bain.jpg",
+                captionKey: "Salle de bain",
+            },
+
+            // Balcon
+            {
+                src: "/img/Gallery/Appart2/Balcon.jpg",
+                captionKey: "Balcon",
+            },
+            {
+                src: "/img/Gallery/Appart2/Espace commun.jpg",
+                captionKey: "Espace commun",
+            },
+            {
+                src: "/img/Gallery/Appart2/Espace commun 02.jpg",
+                captionKey: "Espace commun",
+            }
+
         ],
     },
 
@@ -84,30 +178,101 @@ const apartments = [
         locationKey: "bingerville",
 
         images: [
+            // Salon
             {
-                src: "/img/Gallery/Appart3/RN8_Salon.jpg",
+                src: "/img/Gallery/Appart3/Salon/SALON.jpg",
                 captionKey: "SALON",
             },
             {
-                src: "/img/Gallery/Appart3/RN8_Chambre.jpg",
-                captionKey: "masterBedroom",
+                src: "/img/Gallery/Appart3/Salon/SALON 1.jpg",
+                captionKey: "SALON",
             },
             {
-                src: "/img/Gallery/Appart3/RN8_Chambre.jpg",
-                captionKey: "masterBedroom",
+                src: "/img/Gallery/Appart3/Salon/SALON 2.jpg",
+                captionKey: "SALON",
             },
             {
-                src: "/img/Gallery/Appart3/RN8_Chambre.jpg",
-                captionKey: "masterBedroom",
+                src: "/img/Gallery/Appart3/Salon/SALON 3.jpg",
+                captionKey: "SALON",
             },
             {
-                src: "/img/Gallery/Appart3/RN8_Chambre.jpg",
-                captionKey: "masterBedroom",
+                src: "/img/Gallery/Appart3/Salon/SALON 4.jpg",
+                captionKey: "SALON",
             },
             {
-                src: "/img/Gallery/Appart3/RN8_Terrasse.jpg",
-                captionKey: "terrace",
+                src: "/img/Gallery/Appart3/Salon/SALON 6.jpg",
+                captionKey: "SALON",
             },
+
+            // Chambres
+            {
+                src: "/img/Gallery/Appart3/Chambre/Chambre 1.jpg",
+                captionKey: "Chambre",
+            },
+            {
+                src: "/img/Gallery/Appart3/Chambre/Chambre 2.jpg",
+                captionKey: "Chambre",
+            },
+            {
+                src: "/img/Gallery/Appart3/Chambre/Chambre 3.jpg",
+                captionKey: "Chambre",
+            },
+            {
+                src: "/img/Gallery/Appart3/Chambre/Chambre 4.jpg",
+                captionKey: "Chambre",
+            },
+            {
+                src: "/img/Gallery/Appart3/Chambre/Chambre 1.jpg",
+                captionKey: "Chambre",
+            },
+            {
+                src: "/img/Gallery/Appart3/Chambre/Chambre 5.jpg",
+                captionKey: "Chambre",
+            },
+
+            // Cuisine
+            {
+                src: "/img/Gallery/Appart3/Cuisine/Cuisine.jpg",
+                captionKey: "Cuisine",
+            },
+
+            {
+                src: "/img/Gallery/Appart3/Cuisine/Cuisine 3.jpg",
+                captionKey: "Cuisine",
+            },
+
+            {
+                src: "/img/Gallery/Appart3/Cuisine/CUISINE 5.jpg",
+                captionKey: "Cuisine",
+            },
+
+
+
+            // Salle de bain
+            {
+                src: "/img/Gallery/Appart3/Salle de bain/Salle de bain 3.jpg",
+                captionKey: "Salle de bain",
+            },
+            {
+                src: "/img/Gallery/Appart3/Salle de bain/Salle de bain 1.jpg",
+                captionKey: "Salle de bain",
+            },
+            {
+                src: "/img/Gallery/Appart3/Salle de bain/Salle de bain.jpg",
+                captionKey: "Salle de bain",
+            },
+
+            // Espace commun
+            {
+                src: "/img/Gallery/Appart3/Espace commun/Espace commun 1.jpg",
+                captionKey: "Espace commun",
+            },
+            {
+                src: "/img/Gallery/Appart3/Espace commun/ESPACE COMMUN.jpg",
+                captionKey: "Espace commun",
+            },
+            
+            
         ],
     },
 ];
