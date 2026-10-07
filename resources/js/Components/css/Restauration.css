@@ -12,7 +12,7 @@
 
 .resto-hero {
     position: relative;
-    height: 400px;
+    height: 550px;
     overflow: hidden;
     background: #3a2a2e;
 }
@@ -51,7 +51,7 @@
     width: 100%;
     max-width: 1320px;
     margin: 0 auto;
-    padding: 0 72px 100px;
+    padding: 0 72px 250px;
     color: #ffffff;
     text-align: center;
 }

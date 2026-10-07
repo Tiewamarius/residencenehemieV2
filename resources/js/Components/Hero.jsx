@@ -7,10 +7,11 @@ const SLIDE_DURATION = 7000;
 const SWIPE_THRESHOLD = 50;
 
 const slides = [
-    { image: '/img/Gallery/Appart1/Salon 02.jpg', altKey: 'hero.slides.welcome' },
-    { image: '/img/Hero-Gallery/RN8_Salon.jpg', altKey: 'hero.slides.welcome' },
-    { image: '/img/Gallery/Appart1/Chambre 02.jpg', altKey: 'hero.slides.common' },
-    { image: '/img/Gallery/Appart2/Salon 02.jpg', altKey: 'hero.slides.lounge' },
+    { image: '/img/Hero-Gallery/Accueil/1.jpg', altKey: 'hero.slides.welcome' },
+    { image: '/img/Hero-Gallery/Accueil/2.jpg', altKey: 'hero.slides.welcome' },
+    { image: '/img/Hero-Gallery/Accueil/3.jpg', altKey: 'hero.slides.common' },
+    { image: '/img/Hero-Gallery/Accueil/4.jpg', altKey: 'hero.slides.lounge' },
+    { image: '/img/Hero-Gallery/Accueil/5.jpg', altKey: 'hero.slides.lounge' },
 ];
 
 export default function Hero() {

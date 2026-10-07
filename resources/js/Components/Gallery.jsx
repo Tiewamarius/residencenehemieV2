@@ -1,32 +1,34 @@
-
 import { useEffect, useState } from "react";
 import { Link } from "@inertiajs/react";
 import { useTranslation } from "react-i18next";
 import "./css/Gallery.css";
 
-/* ---------------------------------------------------------------------------
+/* ============================================================================
    HERO
-   Image OU vidéo, choisie aléatoirement à chaque chargement
---------------------------------------------------------------------------- */
+   Image ou vidéo choisie aléatoirement à chaque chargement
+============================================================================ */
 
 const heroMedia = [
     {
         type: "image",
-        src: "/img/Hero-Gallery/ESPACE COMMUN 2.jpg",
+        src: "/img/BANNIERE/Bannière 3.jpg",
         altKey: "heroMedia.residence",
     },
     {
         type: "image",
-        src: "/img/Hero-Gallery/ESPACE COMMUN 2.jpg",
+        src: "/img/BANNIERE/Bannière 4.jpg",
         altKey: "heroMedia.apartment",
     },
     {
         type: "image",
-        src: "/img/Hero-Gallery/ESPACE COMMUN 2.jpg",
+        src: "/img/BANNIERE/Bannière 5.jpg",
         altKey: "heroMedia.outdoor",
-    }
-    , 
+    },
 ];
+
+/* ============================================================================
+   APPARTEMENTS
+============================================================================ */
 
 const apartments = [
     {
@@ -35,7 +37,69 @@ const apartments = [
         locationKey: "bingerville",
 
         images: [
+            // Chambres
+            {
+                src: "/img/Gallery/Chambre (1).jpg",
+                captionKey: "Chambre",
+            },
+            {
+                src: "/img/Gallery/Appart3/Chambre/Chambre 2.jpg",
+                captionKey: "Chambre",
+            },
+            {
+                src: "/img/Gallery/Chambre (4).jpg",
+                captionKey: "Chambre",
+            },
+            {
+                src: "/img/BANNIERE/Bannière 5.jpg",
+                captionKey: "Espace commun",
+            },
+            {
+                src: "/img/Gallery/Appart3/Chambre/Chambre 3.jpg",
+                captionKey: "Chambre",
+            },
+            {
+                src: "/img/Gallery/Appart1/Chambre 02.jpg",
+                captionKey: "Chambre",
+            },
+            {
+                src: "/img/Gallery/Chambre (22).jpg",
+                captionKey: "Chambre",
+            },
+            {
+                src: "/img/Gallery/Chambre (18).jpg",
+                captionKey: "Chambre",
+            },
+            {
+                src: "/img/Gallery/Chambre (27).jpg",
+                captionKey: "Chambre",
+            },
+            {
+                src: "/img/Gallery/Appart1/Chambre 06.jpg",
+                captionKey: "Chambre",
+            },
+            {
+                src: "/img/Gallery/Chambre (28).jpg",
+                captionKey: "Chambre",
+            },
+            {
+                src: "/img/Gallery/Chambre (29).jpg",
+                captionKey: "Chambre",
+            },
+        ],
+    },
+
+    {
+        id: 2,
+        key: "elegance",
+        locationKey: "bingerville",
+
+        images: [
             // Salon
+            {
+                src: "/img/Gallery/Appart2/Bureau.jpg",
+                captionKey: "Salon",
+            },
             {
                 src: "/img/Gallery/Appart1/Salon 02.jpg",
                 captionKey: "Salon",
@@ -48,23 +112,32 @@ const apartments = [
                 src: "/img/Gallery/Appart1/Salon 04.jpg",
                 captionKey: "Salon",
             },
-
-            // Chambres
-            
             {
-                src: "/img/Gallery/Appart1/Chambre 02.jpg",
+                src: "/img/Gallery/Appart2/Salon 03.jpg",
+                captionKey: "Salon",
+            },
+            {
+                src: "/img/Gallery/Chambre (29).jpg",
                 captionKey: "Chambre",
             },
             {
-                src: "/img/Gallery/Appart1/Chambre 06.jpg",
-                captionKey: "Chambre",
-            },
-            {
-                src: "/img/Gallery/Appart1/Chambre 08.jpg",
-                captionKey: "Chambre",
+                src: "/img/Gallery/Appart2/Salon 02.jpg",
+                captionKey: "Salon",
             },
 
             // Cuisine
+            {
+                src: "/img/Gallery/Appart2/Cuisine.jpg",
+                captionKey: "Cuisine",
+            },
+            {
+                src: "/img/Gallery/Appart2/Cuisine 02.jpg",
+                captionKey: "Cuisine",
+            },
+            {
+                src: "/img/Gallery/Appart2/Cuisine lavabo.jpg",
+                captionKey: "Cuisine",
+            },
             {
                 src: "/img/Gallery/Appart1/Cuisine.jpg",
                 captionKey: "Cuisine",
@@ -86,10 +159,9 @@ const apartments = [
                 captionKey: "Chauffe-eau",
             },
             {
-                src: "/img/Gallery/Appart1/Planche à repasser.jpg",
+                src: "/img/Gallery/Appart1/Planch_repasser.jpg",
                 captionKey: "Planche à repasser",
             },
-            
 
             // Salle de bain
             {
@@ -97,58 +169,20 @@ const apartments = [
                 captionKey: "Salle de bain",
             },
             {
-                src: "/img/Gallery/Appart1/toilette.jpg",
+                src: "/img/Gallery/Appart1/Toilette.jpg",
                 captionKey: "Salle de bain",
             },
             {
                 src: "/img/Gallery/Appart1/Shattaf.jpg",
                 captionKey: "Salle de bain",
             },
-        ],
-    },
-
-    {
-        id: 2,
-        key: "elegance",
-        locationKey: "bingerville",
-
-        images: [
-            // Salon
-            {
-                src: "/img/Gallery/Appart2/Salon 03.jpg",
-                captionKey: "Salon",
-            },
-            {
-                src: "/img/Gallery/Appart2/Salon 02.jpg",
-                captionKey: "Salon",
-            },
-            {
-                src: "/img/Gallery/Appart2/Bureau.jpg",
-                captionKey: "Salon",
-            },
-
-            // Cuisine
-            {
-                src: "/img/Gallery/Appart2/Cuisine.jpg",
-                captionKey: "Cuisine",
-            },
-            {
-                src: "/img/Gallery/Appart2/Cuisine 02.jpg",
-                captionKey: "Cuisine",
-            },
-            {
-                src: "/img/Gallery/Appart2/Cuisine lavabo.jpg",
-                captionKey: "Cuisine",
-            },
-
-            // Salle de bain
             {
                 src: "/img/Gallery/Appart2/Salle de bain.jpg",
                 captionKey: "Salle de bain",
             },
             {
-                src: "/img/Gallery/Appart2/Toilette visiteur 2.jpg",
-                captionKey: "Toilette visiteur 2",
+                src: "/img/Gallery/Appart3/Chambre/Chambre 2.jpg",
+                captionKey: "Chambre",
             },
             {
                 src: "/img/Gallery/Appart2/Salle bain.jpg",
@@ -167,8 +201,7 @@ const apartments = [
             {
                 src: "/img/Gallery/Appart2/Espace commun 02.jpg",
                 captionKey: "Espace commun",
-            }
-
+            },
         ],
     },
 
@@ -182,6 +215,10 @@ const apartments = [
             {
                 src: "/img/Gallery/Appart3/Salon/SALON.jpg",
                 captionKey: "SALON",
+            },
+            {
+                src: "/img/Gallery/Appart3/Chambre/2Ch-Salon (2).jpg",
+                captionKey: "Chambre",
             },
             {
                 src: "/img/Gallery/Appart3/Salon/SALON 1.jpg",
@@ -206,19 +243,7 @@ const apartments = [
 
             // Chambres
             {
-                src: "/img/Gallery/Appart3/Chambre/Chambre 1.jpg",
-                captionKey: "Chambre",
-            },
-            {
-                src: "/img/Gallery/Appart3/Chambre/Chambre 2.jpg",
-                captionKey: "Chambre",
-            },
-            {
                 src: "/img/Gallery/Appart3/Chambre/Chambre 3.jpg",
-                captionKey: "Chambre",
-            },
-            {
-                src: "/img/Gallery/Appart3/Chambre/Chambre 4.jpg",
                 captionKey: "Chambre",
             },
             {
@@ -232,26 +257,26 @@ const apartments = [
 
             // Cuisine
             {
-                src: "/img/Gallery/Appart3/Cuisine/Cuisine.jpg",
+                src: "/img/Gallery/Appart3/Cuisine/CUISINE.jpg",
                 captionKey: "Cuisine",
             },
-
             {
-                src: "/img/Gallery/Appart3/Cuisine/Cuisine 3.jpg",
+                src: "/img/Gallery/Appart3/Cuisine/CUISINE 3.jpg",
                 captionKey: "Cuisine",
             },
-
             {
                 src: "/img/Gallery/Appart3/Cuisine/CUISINE 5.jpg",
                 captionKey: "Cuisine",
             },
 
-
-
             // Salle de bain
             {
-                src: "/img/Gallery/Appart3/Salle de bain/Salle de bain 3.jpg",
+                src: "/img/Gallery/Appart3/Salle de bain/Salle_bain.jpg",
                 captionKey: "Salle de bain",
+            },
+            {
+                src: "/img/Gallery/Appart2/Salon 03.jpg",
+                captionKey: "Salon",
             },
             {
                 src: "/img/Gallery/Appart3/Salle de bain/Salle de bain 1.jpg",
@@ -264,37 +289,32 @@ const apartments = [
 
             // Espace commun
             {
-                src: "/img/Gallery/Appart3/Espace commun/Espace commun 1.jpg",
+                src: "/img/BANNIERE/Bannière 3.jpg",
                 captionKey: "Espace commun",
             },
             {
-                src: "/img/Gallery/Appart3/Espace commun/ESPACE COMMUN.jpg",
+                src: "/img/BANNIERE/Bannière 4.jpg",
                 captionKey: "Espace commun",
             },
-            
-            
         ],
     },
 ];
 
-/* ---------------------------------------------------------------------------
-   NOM DE L'APPARTEMENT
+/* ============================================================================
+   OUTILS
+============================================================================ */
 
-   Les noms viennent des traductions :
-
-   appart.items.signature.name
-   appart.items.elegance.name
-   appart.items.prestige.name
---------------------------------------------------------------------------- */
-
+/**
+ * Clé de traduction du nom de l'appartement
+ */
 const nameKey = (apartment) =>
     `appart.items.${apartment.key}.name`;
 
-
+/**
+ * Appartement initial depuis ?apartment=
+ */
 const getInitialApartment = () => {
-    const params = new URLSearchParams(
-        window.location.search
-    );
+    const params = new URLSearchParams(window.location.search);
 
     const apartmentKey = params.get("apartment");
 
@@ -302,33 +322,53 @@ const getInitialApartment = () => {
         (item) => item.key === apartmentKey
     );
 
-    return apartmentExists
-        ? apartmentKey
-        : "signature";
+    return apartmentExists ? apartmentKey : "signature";
 };
 
-/* ---------------------------------------------------------------------------
+/* ============================================================================
    COMPOSANT
---------------------------------------------------------------------------- */
+============================================================================ */
 
 export default function Gallery() {
     const { t } = useTranslation();
 
-    /* Appartement actuellement sélectionné */
+    /* ------------------------------------------------------------------------
+       ÉTATS
+    ------------------------------------------------------------------------ */
+
     const [activeApartment, setActiveApartment] =
         useState(getInitialApartment);
 
-    /* Image actuellement ouverte dans la lightbox */
     const [selectedImage, setSelectedImage] =
         useState(null);
 
-    /* Média hero */
     const [heroMediaItem, setHeroMediaItem] =
         useState(null);
 
-    /* ================================================================
+    /* ------------------------------------------------------------------------
+       APPARTEMENT ACTIF
+    ------------------------------------------------------------------------ */
+
+    const apartment =
+        apartments.find(
+            (item) => item.key === activeApartment
+        ) || apartments[0];
+
+    /* ------------------------------------------------------------------------
+       TRADUCTIONS
+    ------------------------------------------------------------------------ */
+
+    const apartmentTitle = t(
+        nameKey(apartment)
+    );
+
+    const apartmentLocation = t(
+        `gallery.locations.${apartment.locationKey}`
+    );
+
+    /* =========================================================================
        HERO ALÉATOIRE
-    ================================================================ */
+    ========================================================================= */
 
     useEffect(() => {
         const randomIndex = Math.floor(
@@ -338,9 +378,9 @@ export default function Gallery() {
         setHeroMediaItem(heroMedia[randomIndex]);
     }, []);
 
-    /* ================================================================
-       FERMETURE LIGHTBOX AVEC ESC
-    ================================================================ */
+    /* =========================================================================
+       FERMETURE + NAVIGATION LIGHTBOX AU CLAVIER
+    ========================================================================= */
 
     useEffect(() => {
         if (!selectedImage) {
@@ -348,8 +388,77 @@ export default function Gallery() {
         }
 
         const handleKeyDown = (event) => {
+            /* ----------------------------------------------------------------
+               ESC : fermer
+            ---------------------------------------------------------------- */
+
             if (event.key === "Escape") {
+                event.preventDefault();
                 setSelectedImage(null);
+                return;
+            }
+
+            /* ----------------------------------------------------------------
+               FLÈCHE GAUCHE : photo précédente
+            ---------------------------------------------------------------- */
+
+            if (event.key === "ArrowLeft") {
+                event.preventDefault();
+
+                setSelectedImage((current) => {
+                    if (!current) {
+                        return null;
+                    }
+
+                    const previousIndex =
+                        current.index <= 0
+                            ? apartment.images.length - 1
+                            : current.index - 1;
+
+                    const image =
+                        apartment.images[previousIndex];
+
+                    return {
+                        ...image,
+                        title: apartmentTitle,
+                        location: apartmentLocation,
+                        caption: t(image.captionKey),
+                        index: previousIndex,
+                    };
+                });
+
+                return;
+            }
+
+            /* ----------------------------------------------------------------
+               FLÈCHE DROITE : photo suivante
+            ---------------------------------------------------------------- */
+
+            if (event.key === "ArrowRight") {
+                event.preventDefault();
+
+                setSelectedImage((current) => {
+                    if (!current) {
+                        return null;
+                    }
+
+                    const nextIndex =
+                        current.index >=
+                        apartment.images.length - 1
+                            ? 0
+                            : current.index + 1;
+
+                    const image =
+                        apartment.images[nextIndex];
+
+                    return {
+                        ...image,
+                        title: apartmentTitle,
+                        location: apartmentLocation,
+                        caption: t(image.captionKey),
+                        index: nextIndex,
+                    };
+                });
             }
         };
 
@@ -364,55 +473,130 @@ export default function Gallery() {
                 handleKeyDown
             );
         };
-    }, [selectedImage]);
+    }, [
+        selectedImage,
+        apartment,
+        apartmentTitle,
+        apartmentLocation,
+        t,
+    ]);
 
-    /* ================================================================
-       APPARTEMENT ACTIF
-    ================================================================ */
+    /* =========================================================================
+       OUVRIR UNE IMAGE
+    ========================================================================= */
 
-    const apartment =
-        apartments.find(
-            (item) => item.key === activeApartment
-        ) || apartments[0];
+    const openLightbox = (image, index) => {
+        setSelectedImage({
+            ...image,
+            title: apartmentTitle,
+            location: apartmentLocation,
+            caption: t(image.captionKey),
+            index,
+        });
+    };
 
-    /* Nom traduit */
-    const apartmentTitle = t(
-        nameKey(apartment)
-    );
+    /* =========================================================================
+       PHOTO PRÉCÉDENTE
+    ========================================================================= */
 
-    /* Localisation traduite */
-    const apartmentLocation = t(
-        `gallery.locations.${apartment.locationKey}`
-    );
+    const showPreviousImage = (event) => {
+        event.stopPropagation();
 
-    /* ================================================================
+        if (!selectedImage) {
+            return;
+        }
+
+        const previousIndex =
+            selectedImage.index <= 0
+                ? apartment.images.length - 1
+                : selectedImage.index - 1;
+
+        const image =
+            apartment.images[previousIndex];
+
+        setSelectedImage({
+            ...image,
+            title: apartmentTitle,
+            location: apartmentLocation,
+            caption: t(image.captionKey),
+            index: previousIndex,
+        });
+    };
+
+    /* =========================================================================
+       PHOTO SUIVANTE
+    ========================================================================= */
+
+    const showNextImage = (event) => {
+        event.stopPropagation();
+
+        if (!selectedImage) {
+            return;
+        }
+
+        const nextIndex =
+            selectedImage.index >=
+            apartment.images.length - 1
+                ? 0
+                : selectedImage.index + 1;
+
+        const image =
+            apartment.images[nextIndex];
+
+        setSelectedImage({
+            ...image,
+            title: apartmentTitle,
+            location: apartmentLocation,
+            caption: t(image.captionKey),
+            index: nextIndex,
+        });
+    };
+
+    /* =========================================================================
        FERMER LIGHTBOX
-    ================================================================ */
+    ========================================================================= */
 
     const closeLightbox = () => {
         setSelectedImage(null);
     };
 
-    /* ================================================================
+    /* =========================================================================
        CHANGER D'APPARTEMENT
-    ================================================================ */
+    ========================================================================= */
 
     const changeApartment = (apartmentKey) => {
         setActiveApartment(apartmentKey);
 
+        /* Ferme automatiquement la lightbox */
         setSelectedImage(null);
+
+        /* Met à jour l'URL sans recharger la page */
+        const url = new URL(
+            window.location.href
+        );
+
+        url.searchParams.set(
+            "apartment",
+            apartmentKey
+        );
+
+        window.history.replaceState(
+            {},
+            "",
+            url
+        );
     };
 
-    /* ================================================================
+    /* =========================================================================
        RENDER
-    ================================================================ */
+    ========================================================================= */
 
     return (
         <main className="gallery-page">
 
-            {/* =========================================================
+            {/* =================================================================
                 HERO
-            ========================================================= */}
+            ================================================================= */}
 
             <section className="gallery-hero">
 
@@ -447,32 +631,38 @@ export default function Gallery() {
                     aria-hidden="true"
                 />
 
-                {/* CONTENU HERO */}
+                {/* CONTENU */}
                 <div className="gallery-hero__content">
                     <span className="gallery-hero__subtitle">
-                        {t("gallery.hero.subtitle")}
+                        {t(
+                            "gallery.hero.subtitle"
+                        )}
                     </span>
 
                     <h1>
-                        {t("gallery.hero.title")}
+                        {t(
+                            "gallery.hero.title"
+                        )}
                     </h1>
 
                     <p>
-                        {t("gallery.hero.description")}
+                        {t(
+                            "gallery.hero.description"
+                        )}
                     </p>
                 </div>
             </section>
 
-            {/* =========================================================
+            {/* =================================================================
                 GALERIE
-            ========================================================= */}
+            ================================================================= */}
 
             <section className="gallery-section">
                 <div className="gallery-container">
 
-                    {/* =================================================
+                    {/* =========================================================
                         TITRE + RÉSERVATION
-                    ================================================= */}
+                    ========================================================= */}
 
                     <div className="gallery-heading">
                         <div>
@@ -489,9 +679,9 @@ export default function Gallery() {
                         </Link>
                     </div>
 
-                    {/* =================================================
-                        ONGLETS
-                    ================================================= */}
+                    {/* =========================================================
+                        ONGLETS APPARTEMENTS
+                    ========================================================= */}
 
                     <div className="gallery-tabs-wrapper">
                         <div
@@ -501,42 +691,46 @@ export default function Gallery() {
                                 "gallery.chooseApartment"
                             )}
                         >
-                            {apartments.map((item) => {
-                                const isActive =
-                                    activeApartment ===
-                                    item.key;
+                            {apartments.map(
+                                (item) => {
+                                    const isActive =
+                                        activeApartment ===
+                                        item.key;
 
-                                return (
-                                    <button
-                                        key={item.id}
-                                        type="button"
-                                        role="tab"
-                                        aria-selected={
-                                            isActive
-                                        }
-                                        className={
-                                            isActive
-                                                ? "gallery-tab active"
-                                                : "gallery-tab"
-                                        }
-                                        onClick={() =>
-                                            changeApartment(
-                                                item.key
-                                            )
-                                        }
-                                    >
-                                        {t(
-                                            nameKey(item)
-                                        )}
-                                    </button>
-                                );
-                            })}
+                                    return (
+                                        <button
+                                            key={item.id}
+                                            type="button"
+                                            role="tab"
+                                            aria-selected={
+                                                isActive
+                                            }
+                                            className={
+                                                isActive
+                                                    ? "gallery-tab active"
+                                                    : "gallery-tab"
+                                            }
+                                            onClick={() =>
+                                                changeApartment(
+                                                    item.key
+                                                )
+                                            }
+                                        >
+                                            {t(
+                                                nameKey(
+                                                    item
+                                                )
+                                            )}
+                                        </button>
+                                    );
+                                }
+                            )}
                         </div>
                     </div>
 
-                    {/* =================================================
+                    {/* =========================================================
                         INFORMATIONS
-                    ================================================= */}
+                    ========================================================= */}
 
                     <div className="gallery-location">
                         <span>
@@ -545,40 +739,35 @@ export default function Gallery() {
 
                         <span className="gallery-photo-count">
                             {apartment.images.length}{" "}
-                            {t("gallery.photos")}
+                            {t(
+                                "gallery.photos"
+                            )}
                         </span>
                     </div>
 
-                    {/* =================================================
-                        PHOTOS DE L'APPARTEMENT ACTIF
-                    ================================================= */}
+                    {/* =========================================================
+                        GRILLE PHOTOS
+                    ========================================================= */}
 
                     <div className="gallery-grid">
                         {apartment.images.map(
                             (image, index) => {
                                 const caption = t(
-                                    `${image.captionKey}`
+                                    image.captionKey
                                 );
 
                                 return (
                                     <article
                                         className="gallery-card"
-                                        key={image.src}
+                                        key={`${image.src}-${index}`}
                                     >
                                         <button
                                             type="button"
                                             className="gallery-image-button"
                                             onClick={() =>
-                                                setSelectedImage(
-                                                    {
-                                                        ...image,
-                                                        title:
-                                                            apartmentTitle,
-                                                        location:
-                                                            apartmentLocation,
-                                                        caption,
-                                                        index,
-                                                    }
+                                                openLightbox(
+                                                    image,
+                                                    index
                                                 )
                                             }
                                             aria-label={t(
@@ -588,11 +777,14 @@ export default function Gallery() {
                                                 }
                                             )}
                                         >
-
                                             {/* IMAGE */}
                                             <img
-                                                src={image.src}
-                                                alt={caption}
+                                                src={
+                                                    image.src
+                                                }
+                                                alt={
+                                                    caption
+                                                }
                                                 loading="lazy"
                                             />
 
@@ -600,17 +792,7 @@ export default function Gallery() {
                                             <div className="gallery-card__overlay">
                                                 <div className="gallery-card__caption">
 
-                                                    {/* <span className="gallery-card__number">
-                                                        {String(
-                                                            index +
-                                                                1
-                                                        ).padStart(
-                                                            2,
-                                                            "0"
-                                                        )}
-                                                    </span> */}
-
-                                                    <span className="gallery-card__line"></span>
+                                                    <span className="gallery-card__line" />
 
                                                     <p>
                                                         {
@@ -629,9 +811,9 @@ export default function Gallery() {
                 </div>
             </section>
 
-            {/* =========================================================
+            {/* =================================================================
                 LIGHTBOX
-            ========================================================= */}
+            ================================================================= */}
 
             {selectedImage && (
                 <div
@@ -644,7 +826,10 @@ export default function Gallery() {
                     )}
                 >
 
-                    {/* FERMER */}
+                    {/* =========================================================
+                        FERMER
+                    ========================================================= */}
+
                     <button
                         type="button"
                         className="gallery-lightbox__close"
@@ -656,16 +841,65 @@ export default function Gallery() {
                         ×
                     </button>
 
-                    {/* IMAGE */}
+                    {/* =========================================================
+                        PHOTO PRÉCÉDENTE
+                    ========================================================= */}
+
+                    <button
+                        type="button"
+                        className="gallery-lightbox__nav gallery-lightbox__nav--prev"
+                        onClick={
+                            showPreviousImage
+                        }
+                        aria-label={t(
+                            "gallery.lightbox.previous",
+                            {
+                                defaultValue:
+                                    "Photo précédente",
+                            }
+                        )}
+                    >
+                        ‹
+                    </button>
+
+                    {/* =========================================================
+                        IMAGE
+                    ========================================================= */}
+
                     <img
                         src={selectedImage.src}
                         alt={selectedImage.caption}
+                        className="gallery-lightbox__image"
                         onClick={(event) =>
                             event.stopPropagation()
                         }
                     />
 
-                    {/* LÉGENDE */}
+                    {/* =========================================================
+                        PHOTO SUIVANTE
+                    ========================================================= */}
+
+                    <button
+                        type="button"
+                        className="gallery-lightbox__nav gallery-lightbox__nav--next"
+                        onClick={
+                            showNextImage
+                        }
+                        aria-label={t(
+                            "gallery.lightbox.next",
+                            {
+                                defaultValue:
+                                    "Photo suivante",
+                            }
+                        )}
+                    >
+                        ›
+                    </button>
+
+                    {/* =========================================================
+                        LÉGENDE
+                    ========================================================= */}
+
                     <div
                         className="gallery-lightbox__caption"
                         onClick={(event) =>
@@ -677,23 +911,13 @@ export default function Gallery() {
                         </span>
 
                         <h3>
-                            {selectedImage.caption}
+                            {
+                                selectedImage.caption
+                            }
                         </h3>
-
-                        {/* <small>
-                            {t(
-                                "gallery.lightbox.photo",
-                                {
-                                    number:
-                                        selectedImage.index +
-                                        1,
-                                }
-                            )}
-                        </small> */}
                     </div>
                 </div>
             )}
         </main>
     );
 }
- 

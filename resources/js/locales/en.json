@@ -75,7 +75,7 @@
         "signature": {
             "location": "Bingerville",
             "category": "Signature",
-            "name": "Signature Apartment",
+            "name": "Luxury Room",
             "features": [
                 "Elegant and comfortable living space",
                 "Fully furnished",
@@ -87,7 +87,7 @@
         "elegance": {
             "location": "Bingerville",
             "category": "Elegance",
-            "name": "Elegance Apartment",
+            "name": "1-bedroom apartment with a living room",
             "features": [
                 "Spacious and bright interior",
                 "Modern furnishings",
@@ -99,7 +99,7 @@
         "prestige": {
             "location": "Bingerville",
             "category": "Prestige",
-            "name": "Prestige Apartment",
+            "name": "2-bedroom apartment with a living room",
             "features": [
                 "Premium accommodation",
                 "Elegant interior design",

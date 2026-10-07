@@ -24,7 +24,7 @@
     width: 100%;
     padding: 0 30px;
 
-    background: #f0fdfc;
+    background: #e7e9e940;
 }
 
 .amenities-container {
@@ -59,7 +59,7 @@
     padding: 20px 12px;
 
     border-radius: 11px;
-    background: #eaf7f7;
+    background: #e7e9e940;
 
     text-align: center;
 
@@ -116,7 +116,7 @@
 .about-villa-section {
     width: 100%;
     padding: 70px 30px 100px;
-    background: #f0fdfc;
+    background: #e7e9e940;
 }
 
 .about-villa-card {

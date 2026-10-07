@@ -3,17 +3,6 @@ import { Link } from "@inertiajs/react";
 import { useTranslation } from "react-i18next";
 import "./css/AppartSection.css";
 
-/* ---------------------------------------------------------------------------
-   RÉSIDENCES
-
-   Les textes (nom, catégorie, atouts, description) sont dans les fichiers
-   de traduction sous appart.items.<key>.
-
-   La clé "key" est également utilisée par Gallery.jsx pour ouvrir directement
-   le bon appartement dans la galerie.
-
-   Les adresses et prix restent ici.
---------------------------------------------------------------------------- */
 
 const residences = [
     {
@@ -21,7 +10,7 @@ const residences = [
         key: "signature",
         address: "Rue Lambert Feh-Kesse, Bingerville",
         price: 30000,
-        image: "/img/Gallery/Appart1/Salon 02.jpg",
+        image: "/img/Gallery/Appart1/Chambre 02.jpg",
         booking: "/reservation",
         details: "/rooms?apartment=signature",
     },
@@ -30,7 +19,7 @@ const residences = [
         key: "elegance",
         address: "Résidence Néhémie, Bingerville",
         price: 40000,
-        image: "/img/Gallery/Appart2/Salon 03.jpg",
+        image: "/img/NOS APPARTEMENTS/3.jpg",
         booking: "/reservation",
         details: "/rooms?apartment=elegance",
     },
@@ -38,8 +27,8 @@ const residences = [
         id: 3,
         key: "prestige",
         address: "Rue Lambert Feh-Kesse, Bingerville",
-        price: 50000,
-        image: "/img/Gallery/Appart3/Salon/SALON.jpg",
+        price: 60000,
+        image: "/img/NOS APPARTEMENTS/1.jpg",
         booking: "/reservation",
         details: "/rooms?apartment=prestige",
     },
@@ -50,10 +39,7 @@ const residences = [
 --------------------------------------------------------------------------- */
 
 const PinIcon = () => (
-    <svg
-        className="appart-pin"
-        viewBox="0 0 24 24"
-        fill="none"
+    <svg className="appart-pin" viewBox="0 0 24 24" fill="none"
         aria-hidden="true"
     >
         <path

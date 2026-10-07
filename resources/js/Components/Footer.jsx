@@ -41,7 +41,7 @@ export default function Footer() {
                     {/* Identité */}
                     <div className="knsl-footer__brand">
                         <Link href="/" aria-label={t("footer.homeAria")}>
-                            <img src="/img/logo.png" alt="Résidence Néhémie" />
+                            <img src="/img/logoRNwhite.png" alt="Résidence Néhémie" />
                         </Link>
 
                         <p>{t("footer.tagline")}</p>

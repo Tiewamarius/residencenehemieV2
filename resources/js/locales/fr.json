@@ -2,7 +2,7 @@
 "nav": {
 "home": "Accueil",
 "booking": "Réservation",
-"rooms": "Galeries",
+"rooms": "Galerie",
 "dining": "Restauration",
 "contact": "Contactez-nous"
 },
@@ -75,7 +75,7 @@
         "signature": {
             "location": "Bingerville",
             "category": "Signature",
-            "name": "Appartement Signature",
+            "name": "Chambre de luxe",
             "features": [
                 "Espace de vie élégant et confortable",
                 "Entièrement meublé",
@@ -86,8 +86,8 @@
 
         "elegance": {
             "location": "Bingerville",
-            "category": "Élégance",
-            "name": "Appartement Élégance",
+            "category": "Appartement 1 chambre salon",
+            "name": "Appartement 1 chambre salon",
             "features": [
                 "Intérieur spacieux et lumineux",
                 "Mobilier moderne",
@@ -99,7 +99,7 @@
         "prestige": {
             "location": "Bingerville",
             "category": "Prestige",
-            "name": "Appartement Prestige",
+            "name": "Appartement 2 chambres salon",
             "features": [
                 "Hébergement haut de gamme",
                 "Décoration intérieure élégante",

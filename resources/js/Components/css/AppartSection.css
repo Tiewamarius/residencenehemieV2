@@ -14,7 +14,7 @@
 }
 
 .appart-section {
-    --appart-bg: #f0fdfc;
+    --appart-bg: #e7e9e940;
     --appart-white: #ffffff;
     --appart-dark: #0f0e0e;
     --appart-text: #dd2f56;
@@ -427,8 +427,8 @@
 }
 
 .appart-btn-primary {
-    background: #f0fdfc;
-    border: 1px solid #f0fdfc;
+    background: #e7e9e940;
+    border: 1px solid #e7e9e940;
     color: var(--appart-primary-dark);
 }
 
