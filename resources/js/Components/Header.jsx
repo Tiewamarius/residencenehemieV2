@@ -36,7 +36,7 @@ const CONTACT_LINKS = [
     { href: "tel:+2250500326868", icon: FaPhone, label: "+225 05 00 32 68 68" },
     { href: "mailto:info@residencenehemie.com", icon: FaEnvelope, labelKey: "contact.email" },
     {
-        href: "https://www.google.com/maps/dir/?api=1&destination=5.389184494589828,-3.9155399255394325",
+        href: "https://www.google.com/maps/dir/?api=1&destination=5.3891775,-3.9129697&destination_place_id=ChIJQbJAa9bxyQ8RVTV1xN7fpoo",
         icon: FaLocationDot,
         labelKey: "contact.directions",
         external: true,

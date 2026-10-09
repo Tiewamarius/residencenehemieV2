@@ -25,7 +25,9 @@ const mapEmbedUrl =
     "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3972.1821716363106!2d-3.9155399255394325!3d5.389184494589828!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xfc193d6ba52ab41%3A0xa69fdec5c7555353!2zUsOpc2lkZW5jZSBOw6low6ltaWU!5e0!3m2!1sfr!2sci!4v1757603653750!5m2!1sfr!2sci";
 
 const directionsUrl =
-    "https://www.google.com/maps/dir/?api=1&destination=5.389184494589828,-3.9155399255394325";
+    "https://www.google.com/maps/dir/?api=1&destination=5.3891775,-3.9129697&destination_place_id=ChIJQbJAa9bxyQ8RVTV1xN7fpoo";
+    
+    // https://maps.app.goo.gl/kFxRvQuEkkhcMpAA6
 
 export default function MapSection() {
     const { t } = useTranslation();
